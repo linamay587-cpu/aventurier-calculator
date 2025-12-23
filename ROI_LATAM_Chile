@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora ROI - Artist 1 para Chile</title>
+    <style>
+        :root {
+            --primary: #bc204b;
+            --neutral: #575B61;
+            --dark: #202C2F;
+            --white: #FFFFFF;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--white);
+            color: var(--neutral);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        header {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 30px 40px;
+            text-align: center;
+        }
+        h1 {
+            color: var(--white);
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #cccccc;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .content {
+            padding: 40px;
+        }
+        h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            font-size: 1.8rem;
+        }
+        h3 {
+            color: var(--dark);
+            margin: 25px 0 15px;
+        }
+        .calculator-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        @media (max-width: 900px) {
+            .calculator-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        .card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: var(--white);
+            color: var(--dark);
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(188, 32, 75, 0.2);
+        }
+        .result-box {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        .highlight {
+            background-color: rgba(188, 32, 75, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid var(--primary);
+        }
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #a01a3f;
+        }
+        .case-study {
+            background: #f0f2f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        .case-study h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .note {
+            font-style: italic;
+            color: #777;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: var(--dark);
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculadora de ROI - Artist 1 para Chile</h1>
+            <p class="subtitle">Evaluación de retorno de inversión basada en ahorro de horas de trabajo vs. costo del sistema Artist 1. Todos los precios excluyen IVA.</p>
+        </header>
+
+        <div class="content">
+            <section>
+                <h2>Configuración del Cálculo</h2>
+                <p>Seleccione el modelo de Artist 1 y ajuste los parámetros de su operación para estimar el retorno de inversión.</p>
+                
+                <div class="calculator-section">
+                    <div class="card">
+                        <h3>Parámetros del Producto</h3>
+                        <div class="input-group">
+                            <label for="product">Modelo Artist 1:</label>
+                            <select id="product">
+                                <option value="youth1">Artist 1 Youth - 1 Batería</option>
+                                <option value="youth2">Artist 1 Youth - 2 Baterías</option>
+                                <option value="se">Artist 1 SE - 2 Baterías</option>
+                                <option value="pro">Artist 1 Pro - 2 Baterías</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="hoursSaved">Horas de trabajo ahorradas por semana (estimación):</label>
+                            <input type="number" id="hoursSaved" value="10" min="1" max="80">
+                            <small>Considerando la eficiencia superior vs. métodos tradicionales.</small>
+                        </div>
+                        <div class="input-group">
+                            <label for="hourlyRate">Costo laboral por hora (CLP):</label>
+                            <input type="number" id="hourlyRate" value="8000" min="1000" step="500">
+                        </div>
+                        <div class="input-group">
+                            <label for="weeks">Semanas de operación por año:</label>
+                            <input type="number" id="weeks" value="48" min="1" max="52">
+                        </div>
+                        <button class="btn" onclick="calculateROI()">Calcular ROI</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Resultados del ROI</h3>
+                        <p><strong>Modelo seleccionado:</strong> <span id="selectedModel">Artist 1 Youth - 1 Batería</span></p>
+                        <p><strong>Costo estimado D2D (sin IVA):</strong> <span id="productCost">$1,496.62 USD</span></p>
+                        
+                        <div class="result-box">
+                            <h4>Retorno de Inversión (ROI)</h4>
+                            <div class="result-value" id="roiResult">7.2 meses</div>
+                            <p>Tiempo estimado para recuperar la inversión</p>
+                        </div>
+
+                        <div class="highlight">
+                            <p><strong>Ahorro anual estimado:</strong> <span id="annualSavings">$3,840,000 CLP</span></p>
+                            <p><strong>Horas ahorradas anualmente:</strong> <span id="annualHours">480 horas</span></p>
+                            <p><strong>ROI después de 1 año:</strong> <span id="yearROI">+214%</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Estudios de Caso Simples</h2>
+                <div class="case-study">
+                    <h4>Caso 1: Taller de reparación mediano en Santiago</h4>
+                    <p><strong>Antes:</strong> 15 horas/semana en preparación de superficies manualmente.</p>
+                    <p><strong>Después:</strong> 5 horas/semana con Artist 1 Pro.</p>
+                    <p><strong>Ahorro:</strong> 10 horas/semana × $8,000 CLP/hora × 48 semanas = <strong>$3,840,000 CLP anuales</strong>.</p>
+                    <p><strong>Inversión Artist 1 Pro:</strong> ~$2,200 USD (D2D).</p>
+                    <p><strong>ROI:</strong> Menos de 6 meses (considerando tipo de cambio ~900 CLP/USD).</p>
+                </div>
+
+                <div class="case-study">
+                    <h4>Caso 2: Servicio de mantenimiento industrial en Valparaíso</h4>
+                    <p><strong>Antes:</strong> 25 horas/semana en limpieza de equipos con métodos tradicionales.</p>
+                    <p><strong>Después:</strong> 10 horas/semana con Artist 1 SE.</p>
+                    <p><strong>Ahorro:</strong> 15 horas/semana × $9,000 CLP/hora × 48 semanas = <strong>$6,480,000 CLP anuales</strong>.</p>
+                    <p><strong>Inversión Artist 1 SE:</strong> ~$1,920 USD (D2D).</p>
+                    <p><strong>ROI:</strong> Aproximadamente 4 meses.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Comparación de Modelos Artist 1 para Chile</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Precio FOB (USD)</th>
+                            <th>Costo D2D Estimado (USD)*</th>
+                            <th>Características Clave</th>
+                            <th>Horas Ahorro/Semana (típico)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Artist 1 Youth (1 Batería)</strong></td>
+                            <td>$1,208.00</td>
+                            <td>$1,496.62</td>
+                            <td>Modo Turbo, Modo Solo Cepillo</td>
+                            <td>8-12 horas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Artist 1 Youth (2 Baterías)</strong></td>
+                            <td>$1,408.00</td>
+                            <td>$1,697.22</td>
+                            <td>Modo Turbo, Modo Solo Cepillo</td>
+                            <td>10-15 horas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Artist 1 SE (2 Baterías)</strong></td>
+                            <td>$1,628.00</td>
+                            <td>$1,917.88</td>
+                            <td>Modo Eco, Turbo, Solo Cepillo</td>
+                            <td>12-18 horas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Artist 1 Pro (2 Baterías)</strong></td>
+                            <td>$1,908.00</td>
+                            <td>$2,198.72</td>
+                            <td>Modo Eco, Turbo, Auto, Sensibilización</td>
+                            <td>15-25 horas</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="note">*Costo D2D incluye: FOB + flete marítimo + seguro (0.3%) + gastos portuarios/locales. Precios excluyen IVA chileno (19%). Tipo de cambio de referencia: 1 USD = 900 CLP (ajustable). Los costos de envío y cargos locales son estimados para Chile.</p>
+            </section>
+        </div>
+
+        <footer>
+            <p>© 2023 Calculadora ROI Artist 1 - Versión para Latinoamérica (Chile)</p>
+            <p>Esta herramienta es para fines ilustrativos. Los números reales pueden variar según condiciones de operación, cambios en costos y tipo de cambio.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Datos de productos
+        const products = {
+            youth1: {
+                name: "Artist 1 Youth - 1 Batería",
+                fob: 1208.00,
+                d2d: 1496.62,
+                typicalHours: 10
+            },
+            youth2: {
+                name: "Artist 1 Youth - 2 Baterías",
+                fob: 1408.00,
+                d2d: 1697.22,
+                typicalHours: 12
+            },
+            se: {
+                name: "Artist 1 SE - 2 Baterías",
+                fob: 1628.00,
+                d2d: 1917.88,
+                typicalHours: 15
+            },
+            pro: {
+                name: "Artist 1 Pro - 2 Baterías",
+                fob: 1908.00,
+                d2d: 2198.72,
+                typicalHours: 20
+            }
+        };
+
+        // Tipo de cambio USD a CLP
+        const exchangeRate = 900;
+
+        function calculateROI() {
+            const productSelect = document.getElementById('product');
+            const productId = productSelect.value;
+            const product = products[productId];
+            
+            const hoursSaved = parseFloat(document.getElementById('hoursSaved').value);
+            const hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
+            const weeks = parseFloat(document.getElementById('weeks').value);
+            
+            // Actualizar información del producto
+            document.getElementById('selectedModel').textContent = product.name;
+            document.getElementById('productCost').textContent = `$${product.d2d.toFixed(2)} USD`;
+            
+            // Cálculos
+            const annualHoursSaved = hoursSaved * weeks;
+            const annualSavingsCLP = annualHoursSaved * hourlyRate;
+            const annualSavingsUSD = annualSavingsCLP / exchangeRate;
+            
+            // ROI en meses
+            const roiMonths = (product.d2d / (annualSavingsUSD / 12)).toFixed(1);
+            
+            // ROI después de 1 año
+            const roiYear = ((annualSavingsUSD - product.d2d) / product.d2d * 100).toFixed(0);
+            
+            // Actualizar resultados
+            document.getElementById('roiResult').textContent = `${roiMonths} meses`;
+            document.getElementById('annualSavings').textContent = `$${annualSavingsCLP.toLocaleString('es-CL')} CLP`;
+            document.getElementById('annualHours').textContent = `${annualHoursSaved} horas`;
+            document.getElementById('yearROI').textContent = `+${roiYear}%`;
+        }
+
+        // Inicializar con valores por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateROI();
+            
+            // Actualizar cuando cambie el producto
+            document.getElementById('product').addEventListener('change', function() {
+                const productId = this.value;
+                const typicalHours = products[productId].typicalHours;
+                document.getElementById('hoursSaved').value = typicalHours;
+                calculateROI();
+            });
+            
+            // Actualizar cuando cambien inputs
+            ['hoursSaved', 'hourlyRate', 'weeks'].forEach(id => {
+                document.getElementById(id).addEventListener('input', calculateROI);
+            });
+        });
+    </script>
+</body>
+</html>
