@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventurier - Выбор калькулятора</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        header {
+            background: #202C2F;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #FFFFFF;
+        }
+        .logo {
+            color: #bc204b;
+            font-weight: 800;
+        }
+        .subtitle {
+            color: #cccccc;
+            font-size: 1.1rem;
+        }
+        .language-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px;
+        }
+        .option-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #eeeeee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .option-card:hover {
+            transform: translateY(-10px);
+            border-color: #bc204b;
+            box-shadow: 0 15px 30px rgba(188, 32, 75, 0.15);
+        }
+        .flag {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #202C2F;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        .description {
+            color: #575B61;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #bc204b;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #a01a3f;
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background: #575B61;
+        }
+        .btn-secondary:hover {
+            background: #45484d;
+        }
+        .features {
+            background: #f8f9fa;
+            padding: 40px;
+            border-top: 1px solid #eee;
+        }
+        .features h3 {
+            color: #202C2F;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+        .feature-item {
+            padding: 20px;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            color: #bc204b;
+            margin-bottom: 15px;
+        }
+        footer {
+            background: #202C2F;
+            color: #aaa;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .language-options {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="logo">AVENTURIER</span> ROI Calculator</h1>
+            <p class="subtitle">Выберите версию калькулятора возврата инвестиций</p>
+        </header>
+        
+        <div class="language-options">
+            <div class="option-card">
+                <div class="flag">🇷🇺</div>
+                <h2>Российская версия</h2>
+                <p class="description">
+                    Калькулятор ROI на русском языке для рынка России и СНГ. 
+                    Расчеты в рублях, адаптированные под локальные условия.
+                </p>
+                <a href="index_ru.html" class="btn">Открыть калькулятор</a>
+            </div>
+            
+            <div class="option-card">
+                <div class="flag">🇨🇱</div>
+                <h2>Версия для Чили (LATAM)</h2>
+                <p class="description">
+                    Калькулятор ROI на испанском языке для рынка Чили и Латинской Америки.
+                    Расчеты в CLP/USD, адаптированные под условия Чили.
+                </p>
+                <a href="ROI_LATAM_Chile" class="btn">Abrir Calculadora</a>
+            </div>
+        </div>
+        
+        <div class="features">
+            <h3>Функции обеих версий</h3>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h4>Расчет ROI</h4>
+                    <p>Точный расчет возврата инвестиций</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⏱️</div>
+                    <h4>Анализ времени</h4>
+                    <p>Оценка экономии рабочего времени</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h4>Сравнение моделей</h4>
+                    <p>Сравнение всех моделей Artist 1</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Aventurier ROI Calculators. Все права защищены.</p>
+            <p>Инструменты для профессиональной оценки инвестиций в оборудование.</p>
+        </footer>
+    </div>
+</body>
+</html>
