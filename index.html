@@ -330,6 +330,16 @@
             margin-top: 5px;
             font-style: italic;
         }
+        
+        .establishment-tip {
+            background: rgba(188, 32, 75, 0.08);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--primary);
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -392,51 +402,67 @@
                 <h2 class="section-title">🧹 Limpieza</h2>
                 
                 <div class="form-group">
-                    <label for="area">Área por sesión (m²)</label>
+                    <label for="area">Área de pisos a limpiar (m²)</label>
                     <input type="number" id="area" value="2000" min="100" max="50000">
-                    <div class="input-help">Ejemplo: supermercado mediano 2,000 m²</div>
+                    <div class="input-help">Superficie total de pisos en el establecimiento</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="frequency">Frecuencia semanal</label>
+                    <label for="frequency">Frecuencia de limpieza semanal</label>
                     <select id="frequency">
-                        <option value="1">1 vez</option>
-                        <option value="3">3 veces</option>
-                        <option value="5" selected>5 veces (diario)</option>
-                        <option value="7">7 veces</option>
-                        <option value="10">10 veces</option>
-                        <option value="14">14 veces (2× día)</option>
+                        <option value="1">1 vez por semana</option>
+                        <option value="3">3 veces por semana</option>
+                        <option value="5" selected>5 veces por semana (diario)</option>
+                        <option value="7">7 veces por semana</option>
+                        <option value="10">10 veces por semana</option>
+                        <option value="14">14 veces por semana (2× al día)</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="surfaceType">Tipo de superficie</label>
-                    <select id="surfaceType">
-                        <option value="commercial" selected>Comercial</option>
-                        <option value="industrial">Industrial</option>
-                        <option value="hospital">Hospital/Clínica</option>
-                        <option value="education">Educación</option>
+                    <label for="objectType">Tipo de establecimiento</label>
+                    <select id="objectType" onchange="showEstablishmentTip()">
+                        <option value="restaurante">Restaurante / Café</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="supermercado">Supermercado</option>
+                        <option value="centro_comercial" selected>Centro comercial / Mall</option>
+                        <option value="gimnasio">Gimnasio / Centro deportivo</option>
+                        <option value="hospital">Hospital / Clínica</option>
+                        <option value="escuela">Escuela / Colegio</option>
+                        <option value="oficina">Oficina / Centro de negocios</option>
+                        <option value="almacen">Almacén / Bodega</option>
+                        <option value="fabrica">Fábrica / Industrial</option>
                     </select>
+                    <div class="input-help">Seleccione el tipo de establecimiento</div>
+                    <div class="establishment-tip" id="establishmentTip">
+                        <!-- Tips will appear here -->
+                    </div>
                 </div>
                 
                 <div class="form-group">
-                    <label>Grado de suciedad</label>
+                    <label>Grado de suciedad de pisos</label>
                     <div class="radio-group">
                         <div class="radio-option" onclick="selectRadio('dirtLevel', 'light')">
                             <input type="radio" id="dirtLight" name="dirtLevel" value="light">
                             <div>Ligera</div>
+                            <small>Tránsito normal</small>
                         </div>
                         <div class="radio-option" onclick="selectRadio('dirtLevel', 'medium')">
                             <input type="radio" id="dirtMedium" name="dirtLevel" value="medium" checked>
                             <div>Moderada</div>
+                            <small>Uso diario</small>
                         </div>
+                    </div>
+                    <div class="radio-group" style="margin-top: 10px;">
                         <div class="radio-option" onclick="selectRadio('dirtLevel', 'heavy')">
                             <input type="radio" id="dirtHeavy" name="dirtLevel" value="heavy">
                             <div>Pesada</div>
+                            <small>Alto tráfico</small>
                         </div>
                         <div class="radio-option" onclick="selectRadio('dirtLevel', 'extreme')">
                             <input type="radio" id="dirtExtreme" name="dirtLevel" value="extreme">
                             <div>Extrema</div>
+                            <small>Industrial</small>
                         </div>
                     </div>
                 </div>
@@ -447,27 +473,27 @@
                 <h2 class="section-title">💰 Costos Laborales</h2>
                 
                 <div class="form-group">
-                    <label for="teamSize">Personal actual</label>
+                    <label for="teamSize">Personal actual de limpieza</label>
                     <input type="number" id="teamSize" value="2" min="1" max="10">
-                    <div class="input-help">Personas limpiando pisos actualmente</div>
+                    <div class="input-help">Número de personas que limpian pisos actualmente</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="hourlyCost">Salario hora/persona (CLP)</label>
+                    <label for="hourlyCost">Salario por hora/persona (CLP)</label>
                     <input type="number" id="hourlyCost" value="4500" min="1000" max="20000">
                     <div class="currency-note">
-                        $4,500 CLP ≈ $4.96 USD/hora
+                        $4,500 CLP ≈ $4.96 USD/hora (promedio Chile)
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="artistOperator">Operarios Artist 1</label>
+                    <label for="artistOperator">Operarios para Artist 1</label>
                     <input type="number" id="artistOperator" value="1" min="0.5" max="5" step="0.5">
-                    <div class="input-help">Normalmente 1 persona opera Artist 1</div>
+                    <div class="input-help">Normalmente 1 persona opera el Artist 1</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="investment">Inversión Artist 1 (CLP)</label>
+                    <label for="investment">Inversión en Artist 1 (CLP)</label>
                     <input type="number" id="investment" value="1800000" min="500000" max="10000000">
                     <div class="currency-note">
                         $1,800,000 CLP ≈ $1,983 USD
@@ -490,15 +516,15 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="operationMode">Modo operación</label>
+                    <label for="operationMode">Modo de operación</label>
                     <select id="operationMode">
                         <option value="turbo">Modo Turbo</option>
                     </select>
-                    <div class="input-help" id="modeDescription">Youth: solo Turbo disponible</div>
+                    <div class="input-help" id="modeDescription">Youth: solo modo Turbo disponible</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="waterCost">Costo agua (CLP/L)</label>
+                    <label for="waterCost">Costo del agua (CLP/L)</label>
                     <input type="number" id="waterCost" value="0.8" min="0.1" max="5" step="0.1">
                     <div class="input-help">Costo promedio agua potable en Chile</div>
                 </div>
@@ -506,7 +532,7 @@
                 <div class="form-group">
                     <label for="electricityCost">Costo electricidad (CLP/kWh)</label>
                     <input type="number" id="electricityCost" value="150" min="50" max="300">
-                    <div class="input-help">Tarifa comercial promedio Chile</div>
+                    <div class="input-help">Tarifa comercial promedio en Chile</div>
                 </div>
                 
                 <div class="form-group">
@@ -528,13 +554,13 @@
             
             <div class="results-grid">
                 <div class="result-card">
-                    <div class="result-label">Ahorro tiempo por sesión</div>
+                    <div class="result-label">Ahorro de tiempo por sesión</div>
                     <div class="result-value" id="timeSavedSession">0 horas</div>
                     <div class="result-subvalue" id="timeSavedPercent">0% más rápido</div>
                 </div>
                 
                 <div class="result-card">
-                    <div class="result-label">Ahorro anual mano de obra</div>
+                    <div class="result-label">Ahorro anual en mano de obra</div>
                     <div class="result-value" id="annualLaborSavings">$0 CLP</div>
                     <div class="result-subvalue" id="annualLaborSavingsUSD">$0 USD</div>
                 </div>
@@ -546,7 +572,7 @@
                 </div>
                 
                 <div class="result-card">
-                    <div class="result-label">Ahorro neto anual</div>
+                    <div class="result-label">Ahorro neto anual total</div>
                     <div class="result-value" id="annualNetSavings">$0 CLP</div>
                     <div class="result-subvalue" id="annualNetSavingsUSD">$0 USD</div>
                 </div>
@@ -555,27 +581,27 @@
             <div class="highlight-box">
                 <div class="highlight-label">RETORNO DE INVERSIÓN (ROI)</div>
                 <div class="highlight-value" id="roiResult">0 meses</div>
-                <div class="highlight-subtitle">Tiempo para recuperar la inversión total</div>
+                <div class="highlight-subtitle">Tiempo estimado para recuperar la inversión total</div>
             </div>
             
             <div class="disclaimer">
-                *Análisis completo incluye: Mano de obra, agua, electricidad, detergente. 
-                Productividad Artist 1: 1100 m²/h promedio. 48 semanas laborales/año. 
-                Tipo cambio: 1 CLP = 0.0011019 USD. Salario referencia: $4,500 CLP/hora.
+                *Análisis completo incluye todos los costos: Mano de obra, agua, electricidad, detergente. 
+                Productividad Artist 1: 1100 m²/h promedio. 48 semanas laborales por año. 
+                Tipo de cambio: 1 CLP = 0.0011019 USD. Salario de referencia: $4,500 CLP/hora.
             </div>
         </div>
         
         <div class="footer">
             <p>© 2023 Artist 1 Efficiency Calculator - Versión Chile Completa</p>
-            <p>Incluye todos los costos operativos reales del mercado chileno</p>
+            <p>Calculadora especializada para establecimientos chilenos con pisos de alto tráfico</p>
             <p style="margin-top: 15px; color: var(--primary); font-weight: 600;">
-                🇨🇱 Salario operador: ~$4,500 CLP/h • Agua: ~0.8 CLP/L • Electricidad: ~150 CLP/kWh 🇨🇱
+                🇨🇱 Perfecto para: Restaurantes, Hoteles, Supermercados, Centros Comerciales, Hospitales, Escuelas 🇨🇱
             </p>
         </div>
     </div>
 
     <script>
-        // CONSTANTES CON DATOS REALES DE ESPECIFICACIONES
+        // CONSTANTES CON DATOS REALES
         const EXCHANGE_RATE = 0.0011019; // 1 CLP = 0.0011019 USD
         const ARTIST_PRODUCTIVITY = 1100; // m²/hora (promedio 1000-1200)
         const ARTIST_POWER = 0.4; // kW (400W brush + 150W suction = 550W ≈ 0.4 kW eficiente)
@@ -593,25 +619,40 @@
             'turbo': 400   // m² por tanque (Turbo mode)
         };
         
-        // CONSUMO DETERGENTE (estimado)
+        // CONSUMO DETERGENTE
         const DETERGENT_CONSUMPTION = 0.002; // L por m² (2 ml/m²)
         
-        // PRODUCTIVIDAD MANUAL (estándares Chile)
+        // PRODUCTIVIDAD MANUAL (estándares Chile por tipo de establecimiento)
         const MANUAL_PRODUCTIVITY = {
-            'light': 120,    // m²/hora por persona
-            'medium': 80,    // m²/hora por persona  
-            'heavy': 50,     // m²/hora por persona
-            'extreme': 30    // m²/hora por persona
+            'light': 120,    // m²/hora por persona (mantenimiento)
+            'medium': 80,    // m²/hora por persona (uso normal)
+            'heavy': 50,     // m²/hora por persona (alto tráfico)
+            'extreme': 30    // m²/hora por persona (industrial)
         };
         
         // FACTOR DE EFICIENCIA
         const EFFICIENCY_FACTOR = 0.75; // 75% tiempo efectivo
         const WEEKS_PER_YEAR = 48; // semanas laborales
 
+        // TIPS POR TIPO DE ESTABLECIMIENTO
+        const ESTABLISHMENT_TIPS = {
+            'restaurante': '💡 En restaurantes, Artist 1 permite limpieza rápida después del cierre, manteniendo altos estándares de higiene.',
+            'hotel': '💡 En hoteles, la limpieza silenciosa (60dB) no molesta a los huéspedes y mejora la imagen del establecimiento.',
+            'supermercado': '💡 En supermercados, Artist 1 limpia pasillos rápidamente sin interrumpir el flujo de clientes.',
+            'centro_comercial': '💡 En centros comerciales, cubre grandes áreas eficientemente, ideal para limpieza nocturna.',
+            'gimnasio': '💡 En gimnasios, la limpieza higiénica es crucial. Artist 1 elimina bacterias y sudor eficazmente.',
+            'hospital': '💡 En hospitales, el modo esterilización (Pro) y filtro HEPA garantizan máxima higiene en áreas críticas.',
+            'escuela': '💡 En escuelas, la operación sencilla y segura permite limpieza entre clases sin disruptir actividades.',
+            'oficina': '💡 En oficinas, la limpieza silenciosa puede realizarse durante horas laborales sin molestar al personal.',
+            'almacen': '💡 En almacenes, Artist 1 maneja suciedad pesada y grandes áreas con mínimo personal.',
+            'fabrica': '💡 En fábricas, resiste condiciones industriales y limpia grasa, aceites y residuos industriales.'
+        };
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             selectRadio('dirtLevel', 'medium');
             updateOperationModes();
+            showEstablishmentTip();
         });
         
         function selectRadio(groupName, value) {
@@ -635,13 +676,25 @@
             
             if (model === 'youth1' || model === 'youth2') {
                 modeSelect.innerHTML = '<option value="turbo">Modo Turbo</option>';
-                modeDescription.textContent = 'Youth: Solo modo Turbo disponible. 60 min autonomía.';
+                modeDescription.textContent = 'Youth: Solo modo Turbo disponible. 60 min autonomía por batería.';
             } else {
                 modeSelect.innerHTML = `
                     <option value="eco">Modo Eco (más económico)</option>
                     <option value="turbo">Modo Turbo (más rápido)</option>
                 `;
                 modeDescription.textContent = 'SE/Pro: Eco (150 min) y Turbo (120 min) con 2 baterías.';
+            }
+        }
+        
+        function showEstablishmentTip() {
+            const establishment = document.getElementById('objectType').value;
+            const tipElement = document.getElementById('establishmentTip');
+            
+            if (ESTABLISHMENT_TIPS[establishment]) {
+                tipElement.textContent = ESTABLISHMENT_TIPS[establishment];
+                tipElement.style.display = 'block';
+            } else {
+                tipElement.style.display = 'none';
             }
         }
         
