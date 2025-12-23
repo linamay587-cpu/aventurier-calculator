@@ -3,407 +3,663 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora ROI - Artist 1 para Chile</title>
+    <title>Calculadora de Eficiencia - Artist 1 para Chile</title>
     <style>
         :root {
             --primary: #bc204b;
             --neutral: #575B61;
             --dark: #202C2F;
             --white: #FFFFFF;
+            --light-gray: #f5f5f5;
+            --border: #e0e0e0;
         }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         body {
-            background-color: var(--white);
+            background-color: var(--light-gray);
             color: var(--neutral);
-            padding: 20px;
             line-height: 1.6;
         }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            overflow: hidden;
-            border: 1px solid #eee;
+            padding: 20px;
         }
-        header {
-            background-color: var(--dark);
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--dark) 0%, #2c3e50 100%);
             color: var(--white);
-            padding: 30px 40px;
+            padding: 40px 0;
             text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        h1 {
-            color: var(--white);
-            font-size: 2.4rem;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            color: #cccccc;
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .content {
-            padding: 40px;
-        }
-        h2 {
+        
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 800;
             color: var(--primary);
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary);
-            font-size: 1.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
-        h3 {
-            color: var(--dark);
-            margin: 25px 0 15px;
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 800px;
+            margin: 0 auto 20px;
         }
-        .calculator-section {
+        
+        .flag {
+            font-size: 2rem;
+            margin-top: 10px;
+        }
+        
+        /* Main Content */
+        .calculator-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 30px;
             margin-bottom: 40px;
         }
+        
         @media (max-width: 900px) {
-            .calculator-section {
+            .calculator-container {
                 grid-template-columns: 1fr;
             }
         }
-        .card {
-            background: #f9f9f9;
-            border-radius: 10px;
-            padding: 25px;
-            border-left: 5px solid var(--primary);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        
+        .section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
         }
-        .input-group {
-            margin-bottom: 20px;
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        
+        .section-title i {
+            font-size: 1.3rem;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: var(--dark);
+            font-size: 1.05rem;
         }
-        select, input {
+        
+        select, input[type="number"] {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 14px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
             font-size: 1rem;
-            background-color: var(--white);
+            background: var(--white);
             color: var(--dark);
+            transition: all 0.3s;
         }
-        input:focus, select:focus {
+        
+        select:focus, input[type="number"]:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(188, 32, 75, 0.2);
+            box-shadow: 0 0 0 3px rgba(188, 32, 75, 0.1);
         }
-        .result-box {
-            background-color: var(--dark);
+        
+        .radio-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .radio-option:hover {
+            border-color: var(--primary);
+            background: rgba(188, 32, 75, 0.03);
+        }
+        
+        .radio-option.selected {
+            border-color: var(--primary);
+            background: rgba(188, 32, 75, 0.08);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .radio-option input {
+            display: none;
+        }
+        
+        .slider-container {
+            margin-top: 10px;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 3px solid var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .slider-value {
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Results Section */
+        .results {
+            background: var(--dark);
             color: var(--white);
-            padding: 25px;
-            border-radius: 10px;
+            border-radius: 15px;
+            padding: 35px;
             margin-top: 20px;
         }
+        
+        .results-title {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .result-label {
+            color: rgba(255,255,255,0.8);
+        }
+        
         .result-value {
-            font-size: 2.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .highlight-box {
+            background: rgba(188, 32, 75, 0.15);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        
+        .highlight-value {
+            font-size: 2.5rem;
+            font-weight: 800;
             color: var(--primary);
             margin: 10px 0;
         }
-        .highlight {
-            background-color: rgba(188, 32, 75, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 25px 0;
-            border-left: 4px solid var(--primary);
-        }
-        .btn {
-            background-color: var(--primary);
-            color: white;
+        
+        /* Button */
+        .btn-calculate {
+            background: var(--primary);
+            color: var(--white);
             border: none;
-            padding: 14px 28px;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            background-color: #a01a3f;
-        }
-        .case-study {
-            background: #f0f2f5;
-            padding: 25px;
+            padding: 18px 40px;
             border-radius: 10px;
-            margin-bottom: 25px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .case-study h4 {
-            color: var(--primary);
-            margin-bottom: 15px;
+        
+        .btn-calculate:hover {
+            background: #a01a3f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(188, 32, 75, 0.2);
         }
-        .comparison-table {
+        
+        /* Comparison Table */
+        .comparison-section {
+            margin-top: 50px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
             background: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .comparison-table th {
-            background-color: var(--primary);
-            color: white;
+        
+        th {
+            background: var(--primary);
+            color: var(--white);
             padding: 18px 15px;
             text-align: left;
             font-weight: 600;
         }
-        .comparison-table td {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
+        
+        td {
+            padding: 16px 15px;
+            border-bottom: 1px solid var(--border);
         }
-        .comparison-table tr:nth-child(even) {
-            background-color: #f9f9f9;
+        
+        tr:nth-child(even) {
+            background: rgba(188, 32, 75, 0.03);
         }
-        .note {
-            font-style: italic;
-            color: #777;
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px dashed #ccc;
-        }
-        footer {
-            text-align: center;
-            padding: 25px;
-            background-color: var(--dark);
-            color: #aaa;
+        
+        .model-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(188, 32, 75, 0.1);
+            color: var(--primary);
+            border-radius: 4px;
             font-size: 0.9rem;
-            margin-top: 40px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--neutral);
+            font-size: 0.9rem;
+            margin-top: 50px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .disclaimer {
+            background: rgba(188, 32, 75, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--neutral);
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="container">
+            <div class="logo">ARTIST 1</div>
+            <h1>Calculadora de Eficiencia para Chile</h1>
+            <p class="subtitle">Calcule el ahorro de tiempo y recursos con el sistema de limpieza Artist 1. Adaptado a las necesidades del mercado chileno.</p>
+            <div class="flag">🇨🇱</div>
+        </div>
+    </div>
+    
     <div class="container">
-        <header>
-            <h1>Calculadora de ROI - Artist 1 para Chile</h1>
-            <p class="subtitle">Evaluación de retorno de inversión basada en ahorro de horas de trabajo vs. costo del sistema Artist 1. Todos los precios excluyen IVA.</p>
-        </header>
-
-        <div class="content">
-            <section>
-                <h2>Configuración del Cálculo</h2>
-                <p>Seleccione el modelo de Artist 1 y ajuste los parámetros de su operación para estimar el retorno de inversión.</p>
+        <div class="calculator-container">
+            <!-- Left Column - Parameters -->
+            <div class="section">
+                <h2 class="section-title">📊 Parámetros de Limpieza</h2>
                 
-                <div class="calculator-section">
-                    <div class="card">
-                        <h3>Parámetros del Producto</h3>
-                        <div class="input-group">
-                            <label for="product">Modelo Artist 1:</label>
-                            <select id="product">
-                                <option value="youth1">Artist 1 Youth - 1 Batería</option>
-                                <option value="youth2">Artist 1 Youth - 2 Baterías</option>
-                                <option value="se">Artist 1 SE - 2 Baterías</option>
-                                <option value="pro">Artist 1 Pro - 2 Baterías</option>
-                            </select>
+                <div class="form-group">
+                    <label for="objectType">1. Tipo de Superficie / Objeto</label>
+                    <select id="objectType">
+                        <option value="suelo">Suelo industrial / Piso</option>
+                        <option value="pared">Paredes / Fachadas</option>
+                        <option value="maquinaria">Maquinaria industrial</option>
+                        <option value="vehiculos">Vehículos / Transporte</option>
+                        <option value="exteriores">Áreas exteriores</option>
+                        <option value="cocinas">Cocinas industriales</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>2. Grado de Suciedad</label>
+                    <div class="radio-group">
+                        <div class="radio-option" onclick="selectRadio('dirtLevel', 'light')">
+                            <input type="radio" id="dirtLight" name="dirtLevel" value="light">
+                            <div>Ligera</div>
+                            <small>Mantenimiento regular</small>
                         </div>
-                        <div class="input-group">
-                            <label for="hoursSaved">Horas de trabajo ahorradas por semana (estimación):</label>
-                            <input type="number" id="hoursSaved" value="10" min="1" max="80">
-                            <small>Considerando la eficiencia superior vs. métodos tradicionales.</small>
+                        <div class="radio-option" onclick="selectRadio('dirtLevel', 'medium')">
+                            <input type="radio" id="dirtMedium" name="dirtLevel" value="medium" checked>
+                            <div>Moderada</div>
+                            <small>Uso diario normal</small>
                         </div>
-                        <div class="input-group">
-                            <label for="hourlyRate">Costo laboral por hora (CLP):</label>
-                            <input type="number" id="hourlyRate" value="8000" min="1000" step="500">
-                        </div>
-                        <div class="input-group">
-                            <label for="weeks">Semanas de operación por año:</label>
-                            <input type="number" id="weeks" value="48" min="1" max="52">
-                        </div>
-                        <button class="btn" onclick="calculateROI()">Calcular ROI</button>
                     </div>
-
-                    <div class="card">
-                        <h3>Resultados del ROI</h3>
-                        <p><strong>Modelo seleccionado:</strong> <span id="selectedModel">Artist 1 Youth - 1 Batería</span></p>
-                        <p><strong>Costo estimado D2D (sin IVA):</strong> <span id="productCost">$1,496.62 USD</span></p>
-                        
-                        <div class="result-box">
-                            <h4>Retorno de Inversión (ROI)</h4>
-                            <div class="result-value" id="roiResult">7.2 meses</div>
-                            <p>Tiempo estimado para recuperar la inversión</p>
+                    <div class="radio-group" style="margin-top: 10px;">
+                        <div class="radio-option" onclick="selectRadio('dirtLevel', 'heavy')">
+                            <input type="radio" id="dirtHeavy" name="dirtLevel" value="heavy">
+                            <div>Pesada</div>
+                            <small>Industria, grasa, etc.</small>
                         </div>
-
-                        <div class="highlight">
-                            <p><strong>Ahorro anual estimado:</strong> <span id="annualSavings">$3,840,000 CLP</span></p>
-                            <p><strong>Horas ahorradas anualmente:</strong> <span id="annualHours">480 horas</span></p>
-                            <p><strong>ROI después de 1 año:</strong> <span id="yearROI">+214%</span></p>
+                        <div class="radio-option" onclick="selectRadio('dirtLevel', 'extreme')">
+                            <input type="radio" id="dirtExtreme" name="dirtLevel" value="extreme">
+                            <div>Extrema</div>
+                            <small>Acumulación prolongada</small>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <section>
-                <h2>Estudios de Caso Simples</h2>
-                <div class="case-study">
-                    <h4>Caso 1: Taller de reparación mediano en Santiago</h4>
-                    <p><strong>Antes:</strong> 15 horas/semana en preparación de superficies manualmente.</p>
-                    <p><strong>Después:</strong> 5 horas/semana con Artist 1 Pro.</p>
-                    <p><strong>Ahorro:</strong> 10 horas/semana × $8,000 CLP/hora × 48 semanas = <strong>$3,840,000 CLP anuales</strong>.</p>
-                    <p><strong>Inversión Artist 1 Pro:</strong> ~$2,200 USD (D2D).</p>
-                    <p><strong>ROI:</strong> Menos de 6 meses (considerando tipo de cambio ~900 CLP/USD).</p>
+                
+                <div class="form-group">
+                    <label for="area">3. Área a limpiar (m²)</label>
+                    <input type="number" id="area" value="500" min="10" max="10000">
                 </div>
-
-                <div class="case-study">
-                    <h4>Caso 2: Servicio de mantenimiento industrial en Valparaíso</h4>
-                    <p><strong>Antes:</strong> 25 horas/semana en limpieza de equipos con métodos tradicionales.</p>
-                    <p><strong>Después:</strong> 10 horas/semana con Artist 1 SE.</p>
-                    <p><strong>Ahorro:</strong> 15 horas/semana × $9,000 CLP/hora × 48 semanas = <strong>$6,480,000 CLP anuales</strong>.</p>
-                    <p><strong>Inversión Artist 1 SE:</strong> ~$1,920 USD (D2D).</p>
-                    <p><strong>ROI:</strong> Aproximadamente 4 meses.</p>
+                
+                <div class="form-group">
+                    <label for="frequency">4. Frecuencia de limpieza (veces por semana)</label>
+                    <input type="number" id="frequency" value="5" min="1" max="30">
                 </div>
-            </section>
-
-            <section>
-                <h2>Comparación de Modelos Artist 1 para Chile</h2>
-                <table class="comparison-table">
+            </div>
+            
+            <!-- Right Column - Economic Parameters -->
+            <div class="section">
+                <h2 class="section-title">💰 Parámetros Económicos</h2>
+                
+                <div class="form-group">
+                    <label for="teamSize">1. Tamaño del equipo de limpieza (personas)</label>
+                    <input type="number" id="teamSize" value="3" min="1" max="20">
+                </div>
+                
+                <div class="form-group">
+                    <label for="hourlyCost">2. Costo laboral por hora (CLP)</label>
+                    <input type="number" id="hourlyCost" value="8000" min="1000" max="50000">
+                </div>
+                
+                <div class="form-group">
+                    <label for="shiftHours">3. Horas por turno</label>
+                    <input type="number" id="shiftHours" value="8" min="1" max="24">
+                </div>
+                
+                <div class="form-group">
+                    <label>4. Método actual de limpieza</label>
+                    <select id="currentMethod">
+                        <option value="manual">Manual (tradicional)</option>
+                        <option value="basic">Equipo básico</option>
+                        <option value="industrial">Equipo industrial</option>
+                        <option value="advanced">Equipo avanzado</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="artistModel">5. Modelo Artist 1 a evaluar</label>
+                    <select id="artistModel">
+                        <option value="youth1">Artist 1 Youth - 1 Batería</option>
+                        <option value="youth2">Artist 1 Youth - 2 Baterías</option>
+                        <option value="se">Artist 1 SE - 2 Baterías</option>
+                        <option value="pro">Artist 1 Pro - 2 Baterías</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="investment">6. Inversión en Artist 1 (CLP)</label>
+                    <input type="number" id="investment" value="1500000" min="100000" max="50000000">
+                    <small style="color: var(--neutral); margin-top: 5px; display: block;">
+                        Incluye equipo, accesorios y capacitación inicial
+                    </small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Calculate Button -->
+        <button class="btn-calculate" onclick="calculateEfficiency()">
+            🧮 CALCULAR AHORRO Y ROI
+        </button>
+        
+        <!-- Results -->
+        <div class="section results" id="resultsSection" style="display: none;">
+            <h2 class="results-title">📈 Resultados del Análisis</h2>
+            
+            <div class="result-item">
+                <div class="result-label">Tiempo actual de limpieza (semanal):</div>
+                <div class="result-value" id="currentTime">0 horas</div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-label">Tiempo con Artist 1 (semanal):</div>
+                <div class="result-value" id="artistTime">0 horas</div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-label">Ahorro de tiempo semanal:</div>
+                <div class="result-value" id="timeSaved">0 horas</div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-label">Ahorro anual (CLP):</div>
+                <div class="result-value" id="annualSavings">$0 CLP</div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-label">Ahorro anual (USD):</div>
+                <div class="result-value" id="annualSavingsUSD">$0 USD</div>
+            </div>
+            
+            <div class="highlight-box">
+                <div>RETORNO DE INVERSIÓN (ROI)</div>
+                <div class="highlight-value" id="roiResult">0 meses</div>
+                <div>Tiempo estimado para recuperar la inversión</div>
+            </div>
+            
+            <div class="disclaimer">
+                *Cálculos basados en parámetros ingresados. Tipo de cambio de referencia: 1 USD = 900 CLP.
+                Los resultados pueden variar según condiciones específicas de operación.
+            </div>
+        </div>
+        
+        <!-- Comparison Table -->
+        <div class="comparison-section">
+            <h2 class="section-title">⚙️ Comparación de Modelos Artist 1</h2>
+            <p>Seleccione el modelo según sus necesidades específicas:</p>
+            
+            <div class="table-container">
+                <table>
                     <thead>
                         <tr>
                             <th>Modelo</th>
-                            <th>Precio FOB (USD)</th>
-                            <th>Costo D2D Estimado (USD)*</th>
-                            <th>Características Clave</th>
-                            <th>Horas Ahorro/Semana (típico)</th>
+                            <th>Aplicación Recomendada</th>
+                            <th>Eficiencia vs. Método Manual</th>
+                            <th>Capacidad de Área (m²/hora)</th>
+                            <th>Nivel de Automatización</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Artist 1 Youth (1 Batería)</strong></td>
-                            <td>$1,208.00</td>
-                            <td>$1,496.62</td>
-                            <td>Modo Turbo, Modo Solo Cepillo</td>
-                            <td>8-12 horas</td>
+                            <td><span class="model-badge">YOUTH</span> 1 Batería</td>
+                            <td>Pequeñas empresas, mantenimiento regular</td>
+                            <td>3x más rápido</td>
+                            <td>50-80 m²/h</td>
+                            <td>Básico</td>
                         </tr>
                         <tr>
-                            <td><strong>Artist 1 Youth (2 Baterías)</strong></td>
-                            <td>$1,408.00</td>
-                            <td>$1,697.22</td>
-                            <td>Modo Turbo, Modo Solo Cepillo</td>
-                            <td>10-15 horas</td>
+                            <td><span class="model-badge">YOUTH</span> 2 Baterías</td>
+                            <td>Empresas medianas, uso continuo</td>
+                            <td>4x más rápido</td>
+                            <td>70-100 m²/h</td>
+                            <td>Básico</td>
                         </tr>
                         <tr>
-                            <td><strong>Artist 1 SE (2 Baterías)</strong></td>
-                            <td>$1,628.00</td>
-                            <td>$1,917.88</td>
-                            <td>Modo Eco, Turbo, Solo Cepillo</td>
-                            <td>12-18 horas</td>
+                            <td><span class="model-badge">SE</span> 2 Baterías</td>
+                            <td>Industria ligera, servicios profesionales</td>
+                            <td>5x más rápido</td>
+                            <td>90-130 m²/h</td>
+                            <td>Intermedio</td>
                         </tr>
                         <tr>
-                            <td><strong>Artist 1 Pro (2 Baterías)</strong></td>
-                            <td>$1,908.00</td>
-                            <td>$2,198.72</td>
-                            <td>Modo Eco, Turbo, Auto, Sensibilización</td>
-                            <td>15-25 horas</td>
+                            <td><span class="model-badge">PRO</span> 2 Baterías</td>
+                            <td>Industria pesada, alta productividad</td>
+                            <td>7x más rápido</td>
+                            <td>120-180 m²/h</td>
+                            <td>Avanzado</td>
                         </tr>
                     </tbody>
                 </table>
-                <p class="note">*Costo D2D incluye: FOB + flete marítimo + seguro (0.3%) + gastos portuarios/locales. Precios excluyen IVA chileno (19%). Tipo de cambio de referencia: 1 USD = 900 CLP (ajustable). Los costos de envío y cargos locales son estimados para Chile.</p>
-            </section>
+            </div>
         </div>
-
-        <footer>
-            <p>© 2023 Calculadora ROI Artist 1 - Versión para Latinoamérica (Chile)</p>
-            <p>Esta herramienta es para fines ilustrativos. Los números reales pueden variar según condiciones de operación, cambios en costos y tipo de cambio.</p>
-        </footer>
+        
+        <div class="footer">
+            <p>© 2023 Artist 1 Efficiency Calculator - Versión Chile</p>
+            <p>Herramienta de análisis para profesionales de limpieza industrial y mantenimiento.</p>
+            <p style="margin-top: 15px; color: var(--primary); font-weight: 600;">
+                🇨🇱 Especialmente adaptado para el mercado chileno 🇨🇱
+            </p>
+        </div>
     </div>
 
     <script>
-        // Datos de productos
-        const products = {
-            youth1: {
-                name: "Artist 1 Youth - 1 Batería",
-                fob: 1208.00,
-                d2d: 1496.62,
-                typicalHours: 10
-            },
-            youth2: {
-                name: "Artist 1 Youth - 2 Baterías",
-                fob: 1408.00,
-                d2d: 1697.22,
-                typicalHours: 12
-            },
-            se: {
-                name: "Artist 1 SE - 2 Baterías",
-                fob: 1628.00,
-                d2d: 1917.88,
-                typicalHours: 15
-            },
-            pro: {
-                name: "Artist 1 Pro - 2 Baterías",
-                fob: 1908.00,
-                d2d: 2198.72,
-                typicalHours: 20
-            }
-        };
-
-        // Tipo de cambio USD a CLP
-        const exchangeRate = 900;
-
-        function calculateROI() {
-            const productSelect = document.getElementById('product');
-            const productId = productSelect.value;
-            const product = products[productId];
-            
-            const hoursSaved = parseFloat(document.getElementById('hoursSaved').value);
-            const hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
-            const weeks = parseFloat(document.getElementById('weeks').value);
-            
-            // Actualizar información del producto
-            document.getElementById('selectedModel').textContent = product.name;
-            document.getElementById('productCost').textContent = `$${product.d2d.toFixed(2)} USD`;
-            
-            // Cálculos
-            const annualHoursSaved = hoursSaved * weeks;
-            const annualSavingsCLP = annualHoursSaved * hourlyRate;
-            const annualSavingsUSD = annualSavingsCLP / exchangeRate;
-            
-            // ROI en meses
-            const roiMonths = (product.d2d / (annualSavingsUSD / 12)).toFixed(1);
-            
-            // ROI después de 1 año
-            const roiYear = ((annualSavingsUSD - product.d2d) / product.d2d * 100).toFixed(0);
-            
-            // Actualizar resultados
-            document.getElementById('roiResult').textContent = `${roiMonths} meses`;
-            document.getElementById('annualSavings').textContent = `$${annualSavingsCLP.toLocaleString('es-CL')} CLP`;
-            document.getElementById('annualHours').textContent = `${annualHoursSaved} horas`;
-            document.getElementById('yearROI').textContent = `+${roiYear}%`;
-        }
-
-        // Inicializar con valores por defecto
+        // Initialize default selection
         document.addEventListener('DOMContentLoaded', function() {
-            calculateROI();
-            
-            // Actualizar cuando cambie el producto
-            document.getElementById('product').addEventListener('change', function() {
-                const productId = this.value;
-                const typicalHours = products[productId].typicalHours;
-                document.getElementById('hoursSaved').value = typicalHours;
-                calculateROI();
-            });
-            
-            // Actualizar cuando cambien inputs
-            ['hoursSaved', 'hourlyRate', 'weeks'].forEach(id => {
-                document.getElementById(id).addEventListener('input', calculateROI);
-            });
+            selectRadio('dirtLevel', 'medium');
         });
+        
+        function selectRadio(groupName, value) {
+            // Update radio button
+            document.querySelector(`input[name="${groupName}"][value="${value}"]`).checked = true;
+            
+            // Update visual selection
+            document.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
+                const optionDiv = radio.closest('.radio-option');
+                if (radio.value === value) {
+                    optionDiv.classList.add('selected');
+                } else {
+                    optionDiv.classList.remove('selected');
+                }
+            });
+        }
+        
+        function calculateEfficiency() {
+            // Get all values
+            const area = parseFloat(document.getElementById('area').value);
+            const frequency = parseFloat(document.getElementById('frequency').value);
+            const teamSize = parseFloat(document.getElementById('teamSize').value);
+            const hourlyCost = parseFloat(document.getElementById('hourlyCost').value);
+            const shiftHours = parseFloat(document.getElementById('shiftHours').value);
+            const investment = parseFloat(document.getElementById('investment').value);
+            const dirtLevel = document.querySelector('input[name="dirtLevel"]:checked').value;
+            const artistModel = document.getElementById('artistModel').value;
+            const currentMethod = document.getElementById('currentMethod').value;
+            
+            // Efficiency factors based on model
+            const modelEfficiency = {
+                'youth1': 3.0,
+                'youth2': 4.0,
+                'se': 5.0,
+                'pro': 7.0
+            };
+            
+            // Current method efficiency factor
+            const methodFactors = {
+                'manual': 1.0,
+                'basic': 1.5,
+                'industrial': 2.5,
+                'advanced': 4.0
+            };
+            
+            // Dirt level time multipliers
+            const dirtMultipliers = {
+                'light': 0.7,
+                'medium': 1.0,
+                'heavy': 1.8,
+                'extreme': 3.0
+            };
+            
+            // Base cleaning time per m² (hours)
+            const baseTimePerM2 = 0.02; // 1.2 minutes per m² base
+            
+            // Calculations
+            const dirtFactor = dirtMultipliers[dirtLevel];
+            const baseCleaningTime = area * baseTimePerM2 * dirtFactor;
+            
+            // Current method time
+            const currentMethodFactor = methodFactors[currentMethod];
+            const currentWeeklyTime = (baseCleaningTime / currentMethodFactor) * frequency;
+            
+            // Artist 1 time
+            const artistEfficiency = modelEfficiency[artistModel];
+            const artistWeeklyTime = (baseCleaningTime / artistEfficiency) * frequency;
+            
+            // Time savings
+            const timeSavedWeekly = currentWeeklyTime - artistWeeklyTime;
+            const timeSavedYearly = timeSavedWeekly * 48; // 48 working weeks
+            
+            // Cost savings
+            const laborCostPerHour = hourlyCost * teamSize;
+            const yearlySavingsCLP = timeSavedYearly * laborCostPerHour;
+            const yearlySavingsUSD = yearlySavingsCLP / 900; // Assuming 900 CLP = 1 USD
+            
+            // ROI calculation
+            const monthlySavingsCLP = yearlySavingsCLP / 12;
+            const roiMonths = investment / monthlySavingsCLP;
+            
+            // Update results
+            document.getElementById('currentTime').textContent = currentWeeklyTime.toFixed(1) + ' horas';
+            document.getElementById('artistTime').textContent = artistWeeklyTime.toFixed(1) + ' horas';
+            document.getElementById('timeSaved').textContent = timeSavedWeekly.toFixed(1) + ' horas';
+            document.getElementById('annualSavings').textContent = '$' + yearlySavingsCLP.toLocaleString('es-CL') + ' CLP';
+            document.getElementById('annualSavingsUSD').textContent = '$' + yearlySavingsUSD.toLocaleString('es-CL') + ' USD';
+            document.getElementById('roiResult').textContent = roiMonths.toFixed(1) + ' meses';
+            
+            // Show results
+            document.getElementById('resultsSection').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
