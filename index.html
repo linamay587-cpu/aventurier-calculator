@@ -93,16 +93,22 @@
             min-width: 30px;
         }
         
-        /* Main Content */
-        .calculator-container {
+        /* Calculator Sections */
+        .calculator-sections {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
         }
         
-        @media (max-width: 900px) {
-            .calculator-container {
+        @media (max-width: 1000px) {
+            .calculator-sections {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 700px) {
+            .calculator-sections {
                 grid-template-columns: 1fr;
             }
         }
@@ -110,22 +116,22 @@
         .section {
             background: var(--white);
             border-radius: 15px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             border: 1px solid var(--border);
         }
         
         .section-title {
             color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--primary);
         }
         
         /* Form Elements */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         label {
@@ -133,12 +139,12 @@
             margin-bottom: 8px;
             font-weight: 600;
             color: var(--dark);
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
         
         select, input[type="number"] {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             border: 2px solid var(--border);
             border-radius: 8px;
             font-size: 1rem;
@@ -156,17 +162,18 @@
         .radio-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 10px;
+            gap: 10px;
+            margin-top: 8px;
         }
         
         .radio-option {
             border: 2px solid var(--border);
             border-radius: 8px;
-            padding: 15px;
+            padding: 12px;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
+            font-size: 0.9rem;
         }
         
         .radio-option:hover {
@@ -191,7 +198,7 @@
             color: var(--white);
             border-radius: 15px;
             padding: 35px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         
         .results-title {
@@ -201,53 +208,69 @@
             text-align: center;
         }
         
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
         }
         
-        .result-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        @media (max-width: 700px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .result-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
         }
         
         .result-label {
             color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
         }
         
         .result-value {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
+            margin-bottom: 5px;
         }
         
-        .result-detail {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
+        .result-subvalue {
+            color: rgba(255,255,255,0.6);
             font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
         }
         
         .highlight-box {
             background: rgba(188, 32, 75, 0.15);
-            border-left: 4px solid var(--primary);
-            padding: 25px;
-            border-radius: 10px;
+            border-radius: 12px;
+            padding: 30px;
             margin-top: 30px;
             text-align: center;
+            border: 2px solid var(--primary);
+        }
+        
+        .highlight-label {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: rgba(255,255,255,0.9);
         }
         
         .highlight-value {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 800;
             color: var(--primary);
-            margin: 15px 0;
+            margin: 10px 0;
+        }
+        
+        .highlight-subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
         }
         
         /* Button */
@@ -262,7 +285,7 @@
             cursor: pointer;
             transition: all 0.3s;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 30px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -287,18 +310,25 @@
             background: rgba(188, 32, 75, 0.05);
             padding: 15px;
             border-radius: 8px;
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 0.85rem;
             color: var(--neutral);
         }
         
         .currency-note {
             background: rgba(32, 44, 47, 0.08);
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 6px;
             margin-top: 5px;
             font-size: 0.85rem;
             color: var(--neutral);
+        }
+        
+        .input-help {
+            font-size: 0.85rem;
+            color: var(--neutral);
+            margin-top: 5px;
+            font-style: italic;
         }
     </style>
 </head>
@@ -306,8 +336,8 @@
     <div class="header">
         <div class="container">
             <div class="logo">ARTIST 1</div>
-            <h1>Calculadora de Eficiencia para Chile</h1>
-            <p class="subtitle">Cálculo preciso basado en especificaciones técnicas oficiales - Datos reales del fabricante</p>
+            <h1>Calculadora Completa de Eficiencia para Chile</h1>
+            <p class="subtitle">Análisis detallado con todos los costos operativos - Datos reales adaptados al mercado chileno</p>
             <div class="flag">🇨🇱</div>
         </div>
     </div>
@@ -315,7 +345,7 @@
     <div class="container">
         <!-- Technical Specifications -->
         <div class="specs-box">
-            <h3 style="color: var(--primary); margin-bottom: 15px;">📊 ESPECIFICACIONES TÉCNICAS OFICIALES ARTIST 1</h3>
+            <h3 style="color: var(--primary); margin-bottom: 15px;">📊 ESPECIFICACIONES TÉCNICAS Y PARÁMETROS CHILE</h3>
             <div class="specs-grid">
                 <div class="spec-item">
                     <div class="spec-icon">🚀</div>
@@ -324,123 +354,133 @@
                     </div>
                 </div>
                 <div class="spec-item">
+                    <div class="spec-icon">👷</div>
+                    <div>
+                        <strong>Salario operador:</strong> ~4,500 CLP/hora
+                    </div>
+                </div>
+                <div class="spec-item">
                     <div class="spec-icon">💧</div>
                     <div>
-                        <strong>Consumo agua (Eco):</strong> 120 ml/min ≈ 600 m²/tanque
+                        <strong>Agua:</strong> 0.8 CLP/L (promedio Chile)
                     </div>
                 </div>
                 <div class="spec-item">
                     <div class="spec-icon">⚡</div>
                     <div>
-                        <strong>Consumo agua (Turbo):</strong> 200 ml/min ≈ 400 m²/tanque
+                        <strong>Electricidad:</strong> 150 CLP/kWh
                     </div>
                 </div>
                 <div class="spec-item">
-                    <div class="spec-icon">📏</div>
+                    <div class="spec-icon">💰</div>
                     <div>
-                        <strong>Ancho limpieza:</strong> 40 cm
+                        <strong>Tipo cambio:</strong> 1 CLP = 0.0011019 USD
                     </div>
                 </div>
                 <div class="spec-item">
-                    <div class="spec-icon">⏱️</div>
+                    <div class="spec-icon">📅</div>
                     <div>
-                        <strong>Trabajo por tanque:</strong> 33 min (Eco) / 20 min (Turbo)
-                    </div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-icon">🔄</div>
-                    <div>
-                        <strong>Tiempo recarga:</strong> 1-2 minutos
+                        <strong>Semanas laborales:</strong> 48 por año
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="calculator-container">
-            <!-- Left Column - Cleaning Parameters -->
+        <div class="calculator-sections">
+            <!-- Sección 1: Parámetros de Limpieza -->
             <div class="section">
-                <h2 class="section-title">🧹 Parámetros de Limpieza</h2>
+                <h2 class="section-title">🧹 Limpieza</h2>
                 
                 <div class="form-group">
-                    <label for="area">1. Área total a limpiar (m²)</label>
+                    <label for="area">Área por sesión (m²)</label>
                     <input type="number" id="area" value="2000" min="100" max="50000">
-                    <small>Área por sesión de limpieza</small>
+                    <div class="input-help">Ejemplo: supermercado mediano 2,000 m²</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="frequency">2. Frecuencia de limpieza</label>
+                    <label for="frequency">Frecuencia semanal</label>
                     <select id="frequency">
-                        <option value="1">1 vez por semana</option>
-                        <option value="2">2 veces por semana</option>
-                        <option value="3">3 veces por semana</option>
-                        <option value="5" selected>5 veces por semana (diario)</option>
-                        <option value="7">7 veces por semana</option>
-                        <option value="10">10 veces por semana</option>
-                        <option value="14">14 veces por semana (2 veces al día)</option>
+                        <option value="1">1 vez</option>
+                        <option value="3">3 veces</option>
+                        <option value="5" selected>5 veces (diario)</option>
+                        <option value="7">7 veces</option>
+                        <option value="10">10 veces</option>
+                        <option value="14">14 veces (2× día)</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label>3. Tipo de superficie</label>
+                    <label for="surfaceType">Tipo de superficie</label>
                     <select id="surfaceType">
-                        <option value="industrial">Suelo industrial</option>
-                        <option value="commercial" selected>Centro comercial</option>
+                        <option value="commercial" selected>Comercial</option>
+                        <option value="industrial">Industrial</option>
                         <option value="hospital">Hospital/Clínica</option>
-                        <option value="education">Colegio/Universidad</option>
-                        <option value="hotel">Hotel/Restaurante</option>
-                        <option value="warehouse">Bodega/Almacén</option>
+                        <option value="education">Educación</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label>4. Grado de suciedad</label>
+                    <label>Grado de suciedad</label>
                     <div class="radio-group">
                         <div class="radio-option" onclick="selectRadio('dirtLevel', 'light')">
                             <input type="radio" id="dirtLight" name="dirtLevel" value="light">
                             <div>Ligera</div>
-                            <small>Tránsito normal</small>
                         </div>
                         <div class="radio-option" onclick="selectRadio('dirtLevel', 'medium')">
                             <input type="radio" id="dirtMedium" name="dirtLevel" value="medium" checked>
                             <div>Moderada</div>
-                            <small>Uso diario</small>
                         </div>
-                    </div>
-                    <div class="radio-group" style="margin-top: 10px;">
                         <div class="radio-option" onclick="selectRadio('dirtLevel', 'heavy')">
                             <input type="radio" id="dirtHeavy" name="dirtLevel" value="heavy">
                             <div>Pesada</div>
-                            <small>Industria</small>
                         </div>
                         <div class="radio-option" onclick="selectRadio('dirtLevel', 'extreme')">
                             <input type="radio" id="dirtExtreme" name="dirtLevel" value="extreme">
                             <div>Extrema</div>
-                            <small>Construcción</small>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Right Column - Economic Parameters -->
+            <!-- Sección 2: Parámetros Económicos -->
             <div class="section">
-                <h2 class="section-title">💰 Parámetros Económicos</h2>
+                <h2 class="section-title">💰 Costos Laborales</h2>
                 
                 <div class="form-group">
-                    <label for="teamSize">1. Personal actual de limpieza</label>
+                    <label for="teamSize">Personal actual</label>
                     <input type="number" id="teamSize" value="2" min="1" max="10">
-                    <small>Número de personas limpiando pisos actualmente</small>
+                    <div class="input-help">Personas limpiando pisos actualmente</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="hourlyCost">2. Costo laboral hora/persona (CLP)</label>
-                    <input type="number" id="hourlyCost" value="8500" min="1000" max="50000">
+                    <label for="hourlyCost">Salario hora/persona (CLP)</label>
+                    <input type="number" id="hourlyCost" value="4500" min="1000" max="20000">
                     <div class="currency-note">
-                        1 CLP = 0.0011019 USD • $8,500 CLP ≈ $9.37 USD/hora
+                        $4,500 CLP ≈ $4.96 USD/hora
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="artistModel">3. Modelo Artist 1</label>
+                    <label for="artistOperator">Operarios Artist 1</label>
+                    <input type="number" id="artistOperator" value="1" min="0.5" max="5" step="0.5">
+                    <div class="input-help">Normalmente 1 persona opera Artist 1</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="investment">Inversión Artist 1 (CLP)</label>
+                    <input type="number" id="investment" value="1800000" min="500000" max="10000000">
+                    <div class="currency-note">
+                        $1,800,000 CLP ≈ $1,983 USD
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección 3: Costos Operativos -->
+            <div class="section">
+                <h2 class="section-title">⚡ Costos Operativos</h2>
+                
+                <div class="form-group">
+                    <label for="artistModel">Modelo Artist 1</label>
                     <select id="artistModel" onchange="updateOperationModes()">
                         <option value="youth1">Artist 1 Youth - 1 Batería</option>
                         <option value="youth2">Artist 1 Youth - 2 Baterías</option>
@@ -450,88 +490,86 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="operationMode">4. Modo de operación</label>
+                    <label for="operationMode">Modo operación</label>
                     <select id="operationMode">
                         <option value="turbo">Modo Turbo</option>
                     </select>
-                    <small id="modeDescription">Más rápido, mayor consumo de agua</small>
+                    <div class="input-help" id="modeDescription">Youth: solo Turbo disponible</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="investment">5. Inversión en Artist 1 (CLP)</label>
-                    <input type="number" id="investment" value="1800000" min="500000" max="10000000">
-                    <div class="currency-note">
-                        $1,800,000 CLP ≈ $1,983 USD
-                    </div>
+                    <label for="waterCost">Costo agua (CLP/L)</label>
+                    <input type="number" id="waterCost" value="0.8" min="0.1" max="5" step="0.1">
+                    <div class="input-help">Costo promedio agua potable en Chile</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="electricityCost">Costo electricidad (CLP/kWh)</label>
+                    <input type="number" id="electricityCost" value="150" min="50" max="300">
+                    <div class="input-help">Tarifa comercial promedio Chile</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cleaningAgentCost">Costo detergente (CLP/L)</label>
+                    <input type="number" id="cleaningAgentCost" value="500" min="100" max="2000">
+                    <div class="input-help">Detergente profesional bajo espuma</div>
                 </div>
             </div>
         </div>
         
         <!-- Calculate Button -->
         <button class="btn-calculate" onclick="calculateEfficiency()">
-            🧮 CALCULAR AHORRO Y ROI
+            🧮 CALCULAR AHORRO TOTAL Y ROI
         </button>
         
         <!-- Results -->
-        <div class="section results" id="resultsSection" style="display: none;">
-            <h2 class="results-title">📈 RESULTADOS DEL ANÁLISIS</h2>
+        <div class="results" id="resultsSection" style="display: none;">
+            <h2 class="results-title">📈 RESULTADOS DEL ANÁLISIS COMPLETO</h2>
             
-            <div class="result-item">
-                <div class="result-label">Tiempo manual (por sesión):</div>
-                <div class="result-value" id="currentTimeSession">0 horas</div>
-            </div>
-            
-            <div class="result-item">
-                <div class="result-label">Tiempo con Artist 1 (por sesión):</div>
-                <div class="result-value" id="artistTimeSession">0 horas</div>
-            </div>
-            
-            <div class="result-item">
-                <div class="result-label">Ahorro de tiempo por sesión:</div>
-                <div class="result-value" id="timeSavedSession">0 horas</div>
-            </div>
-            
-            <div class="result-item">
-                <div class="result-label">Sesiones por semana:</div>
-                <div class="result-value" id="sessionsPerWeek">0</div>
-            </div>
-            
-            <div class="result-item">
-                <div class="result-label">Ahorro semanal (horas):</div>
-                <div class="result-value" id="weeklyTimeSaved">0 horas</div>
-            </div>
-            
-            <div class="result-item">
-                <div class="result-label">Ahorro anual (CLP):</div>
-                <div class="result-value" id="annualSavingsCLP">$0 CLP</div>
-            </div>
-            
-            <div class="result-item">
-                <div class="result-label">Ahorro anual (USD):</div>
-                <div class="result-value" id="annualSavingsUSD">$0 USD</div>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-label">Ahorro tiempo por sesión</div>
+                    <div class="result-value" id="timeSavedSession">0 horas</div>
+                    <div class="result-subvalue" id="timeSavedPercent">0% más rápido</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-label">Ahorro anual mano de obra</div>
+                    <div class="result-value" id="annualLaborSavings">$0 CLP</div>
+                    <div class="result-subvalue" id="annualLaborSavingsUSD">$0 USD</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-label">Costos operativos anuales</div>
+                    <div class="result-value" id="annualOperatingCosts">$0 CLP</div>
+                    <div class="result-subvalue">Agua + Electricidad + Detergente</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-label">Ahorro neto anual</div>
+                    <div class="result-value" id="annualNetSavings">$0 CLP</div>
+                    <div class="result-subvalue" id="annualNetSavingsUSD">$0 USD</div>
+                </div>
             </div>
             
             <div class="highlight-box">
-                <div style="font-size: 1.1rem; margin-bottom: 10px;">RETORNO DE INVERSIÓN (ROI)</div>
+                <div class="highlight-label">RETORNO DE INVERSIÓN (ROI)</div>
                 <div class="highlight-value" id="roiResult">0 meses</div>
-                <div>Tiempo estimado para recuperar la inversión</div>
-            </div>
-            
-            <div class="result-detail" id="technicalDetails">
-                <!-- Detalles técnicos se insertarán aquí -->
+                <div class="highlight-subtitle">Tiempo para recuperar la inversión total</div>
             </div>
             
             <div class="disclaimer">
-                *Cálculos basados en especificaciones oficiales Artist 1. Tipo de cambio: 1 CLP = 0.0011019 USD.
-                Considera 48 semanas laborales por año. Productividad: 1000-1200 m²/h (promedio 1100 m²/h).
+                *Análisis completo incluye: Mano de obra, agua, electricidad, detergente. 
+                Productividad Artist 1: 1100 m²/h promedio. 48 semanas laborales/año. 
+                Tipo cambio: 1 CLP = 0.0011019 USD. Salario referencia: $4,500 CLP/hora.
             </div>
         </div>
         
         <div class="footer">
-            <p>© 2023 Artist 1 Efficiency Calculator - Versión Chile</p>
-            <p>Especificaciones reales: Productividad 1000-1200 m²/h • Ancho 40 cm • Tanques 4L • Eco: 600 m²/tanque • Turbo: 400 m²/tanque</p>
+            <p>© 2023 Artist 1 Efficiency Calculator - Versión Chile Completa</p>
+            <p>Incluye todos los costos operativos reales del mercado chileno</p>
             <p style="margin-top: 15px; color: var(--primary); font-weight: 600;">
-                🇨🇱 Tipo de cambio: 1 CLP = 0.0011019 USD 🇨🇱
+                🇨🇱 Salario operador: ~$4,500 CLP/h • Agua: ~0.8 CLP/L • Electricidad: ~150 CLP/kWh 🇨🇱
             </p>
         </div>
     </div>
@@ -540,12 +578,13 @@
         // CONSTANTES CON DATOS REALES DE ESPECIFICACIONES
         const EXCHANGE_RATE = 0.0011019; // 1 CLP = 0.0011019 USD
         const ARTIST_PRODUCTIVITY = 1100; // m²/hora (promedio 1000-1200)
+        const ARTIST_POWER = 0.4; // kW (400W brush + 150W suction = 550W ≈ 0.4 kW eficiente)
         const CLEANING_WIDTH = 0.4; // 40 cm
         
         // CONSUMO DE AGUA POR MODO (DATOS REALES)
         const WATER_CONSUMPTION = {
-            'eco': 120,    // ml/minuto
-            'turbo': 200   // ml/minuto
+            'eco': 120,    // ml/minuto = 7.2 L/hora
+            'turbo': 200   // ml/minuto = 12 L/hora
         };
         
         // ÁREA POR TANQUE (DATOS REALES)
@@ -554,24 +593,10 @@
             'turbo': 400   // m² por tanque (Turbo mode)
         };
         
-        // TIEMPO POR TANQUE (DATOS REALES)
-        const TIME_PER_TANK = {
-            'eco': 33,    // minutos por tanque
-            'turbo': 20   // minutos por tanque
-        };
+        // CONSUMO DETERGENTE (estimado)
+        const DETERGENT_CONSUMPTION = 0.002; // L por m² (2 ml/m²)
         
-        // TIEMPO DE RECARGA
-        const REFILL_TIME = 2 / 60; // 2 minutos en horas
-        
-        // AUTONOMÍA DE BATERÍA POR MODELO (DATOS REALES DE EXCEL)
-        const BATTERY_RUNTIME = {
-            'youth1': { 'eco': 0, 'turbo': 60 },   // Youth 1: solo Turbo, 60 min
-            'youth2': { 'eco': 0, 'turbo': 60 },   // Youth 2: solo Turbo, 60 min
-            'se': { 'eco': 150, 'turbo': 120 },    // SE: Eco 150 min, Turbo 120 min
-            'pro': { 'eco': 150, 'turbo': 120 }    // Pro: Eco 150 min, Turbo 120 min
-        };
-        
-        // PRODUCTIVIDAD MANUAL (estándares industria Chile)
+        // PRODUCTIVIDAD MANUAL (estándares Chile)
         const MANUAL_PRODUCTIVITY = {
             'light': 120,    // m²/hora por persona
             'medium': 80,    // m²/hora por persona  
@@ -579,8 +604,9 @@
             'extreme': 30    // m²/hora por persona
         };
         
-        // FACTOR DE EFICIENCIA (descansos, movimiento)
+        // FACTOR DE EFICIENCIA
         const EFFICIENCY_FACTOR = 0.75; // 75% tiempo efectivo
+        const WEEKS_PER_YEAR = 48; // semanas laborales
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -605,18 +631,15 @@
             const modeSelect = document.getElementById('operationMode');
             const modeDescription = document.getElementById('modeDescription');
             
-            // Limpiar opciones
             modeSelect.innerHTML = '';
             
-            // Youth models solo tienen Turbo mode
             if (model === 'youth1' || model === 'youth2') {
                 modeSelect.innerHTML = '<option value="turbo">Modo Turbo</option>';
-                modeDescription.textContent = 'Youth: Solo modo Turbo disponible. 60 min autonomía por batería.';
+                modeDescription.textContent = 'Youth: Solo modo Turbo disponible. 60 min autonomía.';
             } else {
-                // SE y Pro tienen ambos modos
                 modeSelect.innerHTML = `
-                    <option value="eco">Modo Eco</option>
-                    <option value="turbo">Modo Turbo</option>
+                    <option value="eco">Modo Eco (más económico)</option>
+                    <option value="turbo">Modo Turbo (más rápido)</option>
                 `;
                 modeDescription.textContent = 'SE/Pro: Eco (150 min) y Turbo (120 min) con 2 baterías.';
             }
@@ -629,87 +652,91 @@
             const teamSize = parseFloat(document.getElementById('teamSize').value);
             const hourlyCost = parseFloat(document.getElementById('hourlyCost').value);
             const investment = parseFloat(document.getElementById('investment').value);
+            const artistOperator = parseFloat(document.getElementById('artistOperator').value);
             const artistModel = document.getElementById('artistModel').value;
             const operationMode = document.getElementById('operationMode').value;
             const dirtLevel = document.querySelector('input[name="dirtLevel"]:checked').value;
+            const waterCost = parseFloat(document.getElementById('waterCost').value);
+            const electricityCost = parseFloat(document.getElementById('electricityCost').value);
+            const cleaningAgentCost = parseFloat(document.getElementById('cleaningAgentCost').value);
             
-            // CÁLCULOS DE TIEMPO MANUAL
+            // 1. CÁLCULO TIEMPOS
+            
+            // Tiempo manual actual
             const manualSpeed = MANUAL_PRODUCTIVITY[dirtLevel];
             const manualTimePerSession = (area / (manualSpeed * teamSize)) / EFFICIENCY_FACTOR;
             
-            // CÁLCULOS ARTIST 1 (CON DATOS REALES)
-            
-            // 1. Tiempo base de limpieza (sin interrupciones)
+            // Tiempo Artist 1 (considerando recargas)
             const artistBaseTime = area / ARTIST_PRODUCTIVITY;
-            
-            // 2. Calcular recargas de tanque necesarias
             const areaPerTankMode = AREA_PER_TANK[operationMode];
             const tankRefills = Math.max(0, Math.ceil(area / areaPerTankMode) - 1);
-            const totalRefillTime = tankRefills * REFILL_TIME;
+            const refillTime = 2 / 60; // 2 minutos en horas
+            const totalRefillTime = tankRefills * refillTime;
             
-            // 3. Calcular cambios de batería si son necesarios
-            const batteryRuntimeMode = BATTERY_RUNTIME[artistModel][operationMode] / 60; // convertir a horas
-            let batteryChanges = 0;
-            
-            if (batteryRuntimeMode > 0) {
-                const areaPerBattery = ARTIST_PRODUCTIVITY * batteryRuntimeMode;
-                batteryChanges = Math.max(0, Math.ceil(area / areaPerBattery) - 1);
-            }
-            
-            const batteryChangeTime = batteryChanges * (5 / 60); // 5 minutos por cambio
-            
-            // 4. Tiempo total Artist 1 por sesión
-            const artistTimePerSession = artistBaseTime + totalRefillTime + batteryChangeTime;
+            const artistTimePerSession = artistBaseTime + totalRefillTime;
             const artistEffectiveTime = artistTimePerSession / EFFICIENCY_FACTOR;
             
-            // 5. AHORRO DE TIEMPO
+            // Ahorro de tiempo
             const timeSavedPerSession = manualTimePerSession - artistEffectiveTime;
+            const timeSavedPercent = ((timeSavedPerSession / manualTimePerSession) * 100).toFixed(0);
             const weeklyTimeSaved = timeSavedPerSession * frequency;
-            const yearlyTimeSaved = weeklyTimeSaved * 48; // 48 semanas laborales
+            const yearlyTimeSaved = weeklyTimeSaved * WEEKS_PER_YEAR;
             
-            // 6. AHORRO ECONÓMICO
-            const currentLaborCost = manualTimePerSession * teamSize * hourlyCost;
-            const artistLaborCost = artistEffectiveTime * 1 * hourlyCost; // Solo 1 operario
-            const costSavedPerSession = currentLaborCost - artistLaborCost;
-            const weeklyCostSaved = costSavedPerSession * frequency;
-            const yearlySavingsCLP = weeklyCostSaved * 48;
-            const yearlySavingsUSD = yearlySavingsCLP * EXCHANGE_RATE;
+            // 2. CÁLCULO COSTOS MANO DE OBRA
             
-            // 7. CÁLCULO ROI
-            const monthlySavingsCLP = yearlySavingsCLP / 12;
-            const roiMonths = investment / monthlySavingsCLP;
+            const currentLaborCostPerSession = manualTimePerSession * teamSize * hourlyCost;
+            const artistLaborCostPerSession = artistEffectiveTime * artistOperator * hourlyCost;
+            const laborSavedPerSession = currentLaborCostPerSession - artistLaborCostPerSession;
             
-            // ACTUALIZAR RESULTADOS
-            document.getElementById('currentTimeSession').textContent = manualTimePerSession.toFixed(1) + ' horas';
-            document.getElementById('artistTimeSession').textContent = artistEffectiveTime.toFixed(1) + ' horas';
+            const weeklyLaborSaved = laborSavedPerSession * frequency;
+            const yearlyLaborSaved = weeklyLaborSaved * WEEKS_PER_YEAR;
+            
+            // 3. CÁLCULO COSTOS OPERATIVOS ARTIST 1
+            
+            // Consumo de agua
+            const waterConsumptionLperHour = WATER_CONSUMPTION[operationMode] * 60 / 1000; // L/hora
+            const waterUsedPerSession = waterConsumptionLperHour * artistBaseTime;
+            const waterCostPerSession = waterUsedPerSession * waterCost;
+            
+            // Consumo electricidad
+            const electricityUsedPerSession = ARTIST_POWER * artistBaseTime; // kWh
+            const electricityCostPerSession = electricityUsedPerSession * electricityCost;
+            
+            // Consumo detergente
+            const detergentUsedPerSession = area * DETERGENT_CONSUMPTION; // Litros
+            const detergentCostPerSession = detergentUsedPerSession * cleaningAgentCost;
+            
+            // Costos operativos totales por sesión
+            const operatingCostPerSession = waterCostPerSession + electricityCostPerSession + detergentCostPerSession;
+            const yearlyOperatingCosts = operatingCostPerSession * frequency * WEEKS_PER_YEAR;
+            
+            // 4. AHORRO NETO TOTAL
+            
+            const netSavedPerSession = laborSavedPerSession - operatingCostPerSession;
+            const yearlyNetSaved = yearlyLaborSaved - yearlyOperatingCosts;
+            
+            // 5. CÁLCULO ROI
+            
+            const monthlyNetSaved = yearlyNetSaved / 12;
+            const roiMonths = investment / monthlyNetSaved;
+            
+            // 6. ACTUALIZAR RESULTADOS
+            
             document.getElementById('timeSavedSession').textContent = timeSavedPerSession.toFixed(1) + ' horas';
-            document.getElementById('sessionsPerWeek').textContent = frequency;
-            document.getElementById('weeklyTimeSaved').textContent = weeklyTimeSaved.toFixed(1) + ' horas';
-            document.getElementById('annualSavingsCLP').textContent = '$' + yearlySavingsCLP.toLocaleString('es-CL') + ' CLP';
-            document.getElementById('annualSavingsUSD').textContent = '$' + yearlySavingsUSD.toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
+            document.getElementById('timeSavedPercent').textContent = timeSavedPercent + '% más rápido';
+            
+            document.getElementById('annualLaborSavings').textContent = '$' + yearlyLaborSaved.toLocaleString('es-CL', {maximumFractionDigits: 0}) + ' CLP';
+            document.getElementById('annualLaborSavingsUSD').textContent = '$' + (yearlyLaborSaved * EXCHANGE_RATE).toLocaleString('es-CL', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' USD';
+            
+            document.getElementById('annualOperatingCosts').textContent = '$' + yearlyOperatingCosts.toLocaleString('es-CL', {maximumFractionDigits: 0}) + ' CLP';
+            
+            document.getElementById('annualNetSavings').textContent = '$' + yearlyNetSaved.toLocaleString('es-CL', {maximumFractionDigits: 0}) + ' CLP';
+            document.getElementById('annualNetSavingsUSD').textContent = '$' + (yearlyNetSaved * EXCHANGE_RATE).toLocaleString('es-CL', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' USD';
+            
             document.getElementById('roiResult').textContent = roiMonths.toFixed(1) + ' meses';
             
-            // DETALLES TÉCNICOS
-            let detailsHTML = '<strong>Detalles técnicos:</strong><br>';
-            detailsHTML += `• Productividad Artist 1: ${ARTIST_PRODUCTIVITY} m²/hora<br>`;
-            detailsHTML += `• Modo seleccionado: ${operationMode === 'eco' ? 'Eco' : 'Turbo'}<br>`;
-            detailsHTML += `• Área por tanque: ${AREA_PER_TANK[operationMode]} m²<br>`;
+            // 7. MOSTRAR RESULTADOS
             
-            if (tankRefills > 0) {
-                detailsHTML += `• Recargas de tanque necesarias: ${tankRefills} (cada ${AREA_PER_TANK[operationMode]} m²)<br>`;
-            }
-            
-            if (batteryChanges > 0) {
-                const runtime = BATTERY_RUNTIME[artistModel][operationMode];
-                detailsHTML += `• Cambios de batería: ${batteryChanges} (autonomía: ${runtime} minutos)<br>`;
-            }
-            
-            detailsHTML += `• Consumo de agua: ${WATER_CONSUMPTION[operationMode]} ml/minuto<br>`;
-            detailsHTML += `• Tiempo trabajo por tanque: ${TIME_PER_TANK[operationMode]} minutos`;
-            
-            document.getElementById('technicalDetails').innerHTML = detailsHTML;
-            
-            // MOSTRAR RESULTADOS
             document.getElementById('resultsSection').style.display = 'block';
             document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
         }
