@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <title>AVENTURIER | Calculadora ROI para México 2026</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de Retorno de Inversión para máquinas lavapisos AVENTURIER en el mercado mexicano 2026">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* === VARIABLES === */
+        :root {
+            --mexico-green: #006847;
+            --mexico-red: #ce1126;
+            --mexico-white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background: #f8f9fa;
+            --border: #e1e8ed;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --radius: 10px;
+        }
+        
+        /* === RESET & BASE === */
         * { 
             box-sizing: border-box; 
             margin: 0; 
@@ -14,28 +29,29 @@
         }
         
         body { 
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: var(--background);
             min-height: 100vh;
             padding: 20px;
-            color: #333;
+            color: var(--text-dark);
+            line-height: 1.6;
         }
         
-        .calculator-container { 
-            max-width: 1100px; 
+        .container { 
+            max-width: 1000px; 
             margin: 0 auto;
-            background: white;
+            background: var(--mexico-white);
             border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 86, 179, 0.1);
+            box-shadow: var(--shadow);
             overflow: hidden;
-            border: 1px solid #e1e8ed;
+            border: 1px solid var(--border);
         }
         
+        /* === HEADER === */
         .header {
-            background: linear-gradient(135deg, #006847 0%, #ce1126 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--mexico-green) 0%, var(--mexico-red) 100%);
+            color: var(--mexico-white);
             padding: 30px 40px;
             text-align: center;
-            position: relative;
         }
         
         .mexico-flag {
@@ -46,30 +62,31 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            border: 2px solid white;
+            border: 2px solid var(--mexico-white);
         }
         
-        .flag-green { background: #006847; flex: 1; }
+        .flag-green { background: var(--mexico-green); flex: 1; }
         .flag-white { 
-            background: white; 
+            background: var(--mexico-white); 
             flex: 1; 
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 24px;
+            color: var(--mexico-green);
         }
-        .flag-red { background: #ce1126; flex: 1; }
+        .flag-red { background: var(--mexico-red); flex: 1; }
         
         .header h1 {
             font-size: 32px;
             margin-bottom: 10px;
             font-weight: 700;
-            letter-spacing: 1px;
         }
         
         .header h2 {
             font-size: 20px;
             margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.9);
+            opacity: 0.95;
             font-weight: 500;
         }
         
@@ -78,22 +95,22 @@
             font-size: 16px;
             max-width: 800px;
             margin: 15px auto;
-            line-height: 1.5;
         }
         
-        .mexican-market-badge {
+        .market-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #006847 0%, #ce1126 100%);
-            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--mexico-white);
             padding: 8px 20px;
             border-radius: 20px;
             font-weight: 600;
             font-size: 14px;
             margin-top: 10px;
-            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
-        .calculator-content {
+        /* === CONTENT === */
+        .content {
             padding: 40px;
         }
         
@@ -104,17 +121,13 @@
         .section-title {
             font-size: 20px;
             font-weight: 600;
-            color: #006847;
+            color: var(--mexico-green);
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 3px solid #ce1126;
+            border-bottom: 3px solid var(--mexico-red);
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-        
-        .section-title i {
-            font-size: 24px;
         }
         
         .row {
@@ -133,22 +146,22 @@
             font-weight: 600; 
             display: block; 
             margin-bottom: 8px;
-            color: #006847;
+            color: var(--mexico-green);
             font-size: 15px;
         }
         
         .info-text {
             font-size: 13px;
-            color: #666;
+            color: var(--text-light);
             margin-top: 5px;
             line-height: 1.4;
         }
         
-        .mexican-data {
+        .data-box {
             background: #f0f9ff;
             padding: 10px;
             border-radius: 8px;
-            border-left: 4px solid #006847;
+            border-left: 4px solid var(--mexico-green);
             margin-top: 10px;
             font-size: 14px;
         }
@@ -156,72 +169,62 @@
         input, select { 
             width: 100%; 
             padding: 14px 16px; 
-            border: 2px solid #e1e8ed;
-            border-radius: 10px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
             font-size: 16px;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             background: #f8fafc;
-            color: #333;
+            color: var(--text-dark);
         }
         
         input:focus, select:focus {
-            border-color: #006847;
-            background: white;
+            border-color: var(--mexico-green);
+            background: var(--mexico-white);
             outline: none;
             box-shadow: 0 0 0 4px rgba(0, 104, 71, 0.15);
         }
         
-        .currency-input {
-            position: relative;
-        }
-        
-        .currency-input span {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-weight: 600;
-            color: #555;
-        }
-        
-        .currency-input input {
-            padding-left: 40px;
-        }
-        
+        /* === BUTTONS === */
         .btn-container {
             display: flex;
-            gap: 15px;
+            gap: 20px;
+            margin: 40px 0;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 30px 0;
         }
         
         .btn-primary { 
-            background: linear-gradient(135deg, #006847 0%, #ce1126 100%);
-            color: white; 
+            background: linear-gradient(135deg, var(--mexico-green) 0%, var(--mexico-red) 100%);
+            color: var(--mexico-white); 
             padding: 18px 40px; 
             border: none; 
-            border-radius: 12px;
+            border-radius: var(--radius);
             font-size: 18px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
+            transition: all 0.3s;
             min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
         .btn-secondary {
             background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
-            color: white;
+            color: var(--mexico-white);
             padding: 18px 40px;
             border: none;
-            border-radius: 12px;
+            border-radius: var(--radius);
             font-size: 18px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
+            transition: all 0.3s;
             min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
         .btn-primary:hover, .btn-secondary:hover { 
@@ -229,21 +232,18 @@
             box-shadow: 0 15px 30px rgba(0, 104, 71, 0.3);
         }
         
-        .btn-primary:active, .btn-secondary:active {
-            transform: translateY(0);
-        }
-        
-        .result-section { 
+        /* === RESULTS === */
+        .results {
             background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
             padding: 40px;
             border-radius: 15px;
             margin-top: 40px;
-            border-left: 6px solid #006847;
+            border-left: 6px solid var(--mexico-green);
             display: none;
         }
         
         .highlight-box {
-            background: white;
+            background: var(--mexico-white);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 104, 71, 0.08);
@@ -253,61 +253,22 @@
         }
         
         .highlight-number {
-            font-size: 42px;
+            font-size: 48px;
             font-weight: 800;
-            color: #ce1126;
-            display: block;
-            margin: 15px 0;
-            line-height: 1.2;
+            color: var(--mexico-red);
+            margin: 20px 0;
+            line-height: 1;
         }
         
         .highlight-label {
             font-size: 18px;
-            color: #666;
+            color: var(--text-light);
             font-weight: 500;
-        }
-        
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .detail-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e1e8ed;
-            transition: transform 0.3s ease;
-        }
-        
-        .detail-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .detail-card h4 {
-            color: #006847;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .detail-card .value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ce1126;
-        }
-        
-        .detail-card .sub-value {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
         }
         
         .roi-badge {
             display: inline-block;
-            padding: 8px 20px;
+            padding: 10px 25px;
             border-radius: 25px;
             font-weight: 600;
             font-size: 16px;
@@ -316,30 +277,59 @@
         
         .roi-excellent { background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); color: #155724; }
         .roi-good { background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); color: #856404; }
-        .roi-normal { background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%); color: #0c5460; }
-        .roi-long { background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); color: #721c24; }
         
-        .labor-cost-box {
-            background: #fff3cd;
+        /* === DETAILS === */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .detail-card {
+            background: var(--mexico-white);
             padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-left: 4px solid #ffc107;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+        
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .detail-card h4 {
+            color: var(--mexico-green);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .detail-card .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--mexico-red);
+        }
+        
+        .detail-card .sub {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 5px;
         }
         
         .cost-breakdown {
             background: #f8f9fa;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: var(--radius);
             margin-top: 20px;
-            border-left: 4px solid #006847;
+            border-left: 4px solid var(--mexico-green);
         }
         
         .cost-item {
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px solid #e1e8ed;
+            border-bottom: 1px solid var(--border);
         }
         
         .cost-item:last-child {
@@ -347,56 +337,34 @@
         }
         
         .cost-label {
-            color: #555;
+            color: var(--text-light);
         }
         
         .cost-value {
             font-weight: 600;
-            color: #006847;
+            color: var(--mexico-green);
         }
         
-        .sensitivity-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+        /* === INFO BOXES === */
+        .info-box {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: var(--radius);
             margin: 20px 0;
+            border-left: 4px solid #ffc107;
         }
         
-        .sensitivity-card {
-            background: white;
+        .water-electricity-box {
+            background: #e3f2fd;
             padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid;
+            border-radius: var(--radius);
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
         }
         
-        .sensitivity-pessimistic { border-color: #dc3545; }
-        .sensitivity-realistic { border-color: #006847; }
-        .sensitivity-optimistic { border-color: #28a745; }
-        
-        .currency-display {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-        
-        .currency-item {
-            text-align: center;
-            flex: 1;
-            min-width: 100px;
-        }
-        
-        .currency-flag {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            .calculator-content {
+            .content {
                 padding: 20px;
             }
             
@@ -418,7 +386,7 @@
             }
             
             .highlight-number {
-                font-size: 32px;
+                font-size: 36px;
             }
             
             .btn-container {
@@ -430,6 +398,7 @@
             }
         }
         
+        /* === ANIMATIONS === */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -439,159 +408,96 @@
             animation: fadeIn 0.6s ease-out;
         }
         
-        .warning-box {
-            background: #fff3cd;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid #ffc107;
-            font-size: 14px;
+        /* === FOOTER === */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: var(--mexico-white);
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
         }
         
-        .benefits-list {
-            padding-left: 20px;
-            margin: 15px 0;
+        .footer a {
+            color: #ffc107;
+            text-decoration: none;
         }
         
-        .benefits-list li {
-            margin-bottom: 8px;
-            color: #555;
-        }
-        
-        .export-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .water-electricity-box {
-            background: #e3f2fd;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid #2196f3;
-        }
-        
-        .market-insight {
-            background: #f3e5f5;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid #9c27b0;
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="calculator-container">
+    <div class="container">
+        <!-- HEADER -->
         <div class="header">
             <div class="mexico-flag">
                 <div class="flag-green"></div>
-                <div class="flag-white">
-                    <span style="color: #006847; font-size: 24px;">🇲🇽</span>
-                </div>
+                <div class="flag-white">🇲🇽</div>
                 <div class="flag-red"></div>
             </div>
             <h1>AVENTURIER</h1>
             <h2>CALCULADORA ROI PARA MÉXICO 2026</h2>
-            <div class="mexican-market-badge">ACTUALIZADO ENERO 2026 | TIPO DE CAMBIO 17.24 MXN/USD</div>
-            <p>Calculadora de Retorno de Inversión con Análisis de Sensibilidad | Ahorro Real en Costos Laborales y Utilidades</p>
+            <div class="market-badge">
+                <i class="fas fa-calendar-alt"></i> ENERO 2026 | 
+                <i class="fas fa-exchange-alt"></i> 1 USD = 17.24 MXN
+            </div>
+            <p>Calculadora de Retorno de Inversión para Máquinas Lavapisos | Ahorro Real en Costos Laborales</p>
         </div>
         
-        <div class="calculator-content">
-            <!-- Секция 1: Datos del Mercado Mexicano -->
+        <!-- MAIN CONTENT -->
+        <div class="content">
+            <!-- SECTION 1: MARKET DATA -->
             <div class="section">
-                <div class="section-title"><i class="fas fa-flag"></i> 1. Datos del Mercado Mexicano (Enero 2026)</div>
-                
-                <div class="labor-cost-box">
-                    <h4><i class="fas fa-chart-line"></i> Situación Actual de Costos Laborales en México 2026:</h4>
-                    <p><strong>Aumento salarial 2026:</strong> 12% incremento en el salario mínimo</p>
-                    <p><strong>Norte de México:</strong> $420 MXN por día ≈ $750 USD mensuales</p>
-                    <p><strong>Eficiencia comprobada:</strong> La máquina es 8 veces más rápida que limpieza manual</p>
-                    <p><strong>Reducción de tiempo:</strong> 87.5% menos tiempo de mano de obra</p>
+                <div class="section-title">
+                    <i class="fas fa-flag"></i> 1. Datos del Mercado Mexicano
                 </div>
                 
-                <div class="market-insight">
-                    <h4><i class="fas fa-lightbulb"></i> Insight del Mercado:</h4>
-                    <p>Con el aumento del 12% en salarios para 2026, la automatización se vuelve aún más rentable. 
-                    Cada año los costos laborales aumentan, mientras que la inversión en maquinaria es fija.</p>
+                <div class="info-box">
+                    <h4><i class="fas fa-chart-line"></i> Situación Actual 2026:</h4>
+                    <p><strong>Aumento salarial 2026:</strong> 12% incremento en salario mínimo</p>
+                    <p><strong>Norte de México:</strong> $420 MXN por día ($7,560 MXN/mes)</p>
+                    <p><strong>Eficiencia:</strong> Máquina 8x más rápida que limpieza manual</p>
+                    <p><strong>Ahorro de tiempo:</strong> 87.5% reducción en mano de obra</p>
                 </div>
                 
                 <div class="row">
                     <div class="input-group">
                         <label><i class="fas fa-robot"></i> Modelo de Máquina:</label>
-                        <select id="modelSelect" onchange="updateModelPrice()">
+                        <select id="model">
                             <option value="youth1">Artist 1 Youth - 1 Batería</option>
                             <option value="youth2" selected>Artist 1 Youth - 2 Baterías</option>
                         </select>
-                        <div class="info-text" id="modelInfo">Modelo con 2 baterías - ideal para turnos largos</div>
+                        <div class="info-text">Modelo con 2 baterías - ideal para turnos largos</div>
                     </div>
                     
                     <div class="input-group">
-                        <label><i class="fas fa-exchange-alt"></i> Tipo de Cambio Actual:</label>
-                        <input type="number" id="exchangeRate" value="17.24" min="15" max="25" step="0.01">
-                        <div class="info-text">Tipo de cambio actual: 1 USD = 17.24 MXN | 1 USD = 6.95 CNY</div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="input-group">
-                        <label><i class="fas fa-tag"></i> Precio de la Máquina (USD):</label>
-                        <div class="currency-input">
-                            <span>$</span>
-                            <input type="number" id="machinePriceUSD" value="2799" min="100" step="100">
-                        </div>
-                        <div class="info-text">Precio listado: Youth 1 Batería $2,399 USD | Youth 2 Baterías $2,799 USD</div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label><i class="fas fa-tag"></i> Precio en Pesos Mexicanos (MXN):</label>
-                        <div class="currency-input">
-                            <span>$</span>
-                            <input type="number" id="machinePriceMXN" value="48227" min="1000" step="1000" readonly style="background: #e9ecef;">
-                        </div>
-                        <div class="info-text">Calculado automáticamente según tipo de cambio</div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="input-group">
-                        <label><i class="fas fa-globe"></i> Mostrar precios también en:</label>
-                        <select id="secondaryCurrency">
-                            <option value="none">Solo MXN/USD</option>
-                            <option value="cny">Mostrar en Yuanes Chinos (CNY)</option>
-                        </select>
-                        <div class="info-text">Tipo de cambio USD/CNY: 6.95</div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label><i class="fas fa-ruler-combined"></i> Precio por m² (opcional):</label>
-                        <div class="currency-input">
-                            <span>$</span>
-                            <input type="number" id="pricePerM2" value="0.50" min="0.10" step="0.05">
-                        </div>
-                        <div class="info-text">Si cobra por metro cuadrado limpio (promedio: $0.50 MXN/m²)</div>
+                        <label><i class="fas fa-exchange-alt"></i> Tipo de Cambio (MXN/USD):</label>
+                        <input type="number" id="exchangeRate" value="17.24" step="0.01">
+                        <div class="info-text">Tipo de cambio actual: 1 USD = 17.24 MXN</div>
                     </div>
                 </div>
             </div>
             
-            <!-- Секция 2: Parámetros de Limpieza -->
+            <!-- SECTION 2: CLEANING PARAMETERS -->
             <div class="section">
-                <div class="section-title"><i class="fas fa-building"></i> 2. Parámetros de Limpieza</div>
+                <div class="section-title">
+                    <i class="fas fa-building"></i> 2. Parámetros de Limpieza
+                </div>
+                
                 <div class="row">
                     <div class="input-group">
                         <label><i class="fas fa-expand-arrows-alt"></i> Área de Limpieza (m²):</label>
-                        <input type="number" id="area" value="2000" min="100" step="100">
-                        <div class="info-text">Área típica: Comercios 500-2000 m², Fábricas 2000-5000 m²</div>
+                        <input type="number" id="area" value="2000" min="100">
+                        <div class="info-text">Área típica: Comercios 500-2000 m²</div>
                     </div>
                     
                     <div class="input-group">
-                        <label><i class="fas fa-calendar-alt"></i> Frecuencia de Limpieza (días/semana):</label>
-                        <select id="cleaningDays">
-                            <option value="5">5 días (Lunes-Viernes)</option>
-                            <option value="6" selected>6 días (Lunes-Sábado)</option>
-                            <option value="7">7 días (Diario)</option>
+                        <label><i class="fas fa-calendar-alt"></i> Días por Semana:</label>
+                        <select id="daysPerWeek">
+                            <option value="5">5 días (L-V)</option>
+                            <option value="6" selected>6 días (L-S)</option>
+                            <option value="7">7 días (diario)</option>
                         </select>
                         <div class="info-text">En México es común trabajar 6 días a la semana</div>
                     </div>
@@ -599,137 +505,77 @@
                 
                 <div class="row">
                     <div class="input-group">
-                        <label><i class="fas fa-clock"></i> Horas de Limpieza por Día:</label>
-                        <select id="dailyHours">
+                        <label><i class="fas fa-clock"></i> Horas por Día:</label>
+                        <select id="hoursPerDay">
                             <option value="4">4 horas</option>
                             <option value="6">6 horas</option>
-                            <option value="8" selected>8 horas (Jornada completa)</option>
-                            <option value="10">10 horas (Turno extendido)</option>
+                            <option value="8" selected>8 horas (jornada completa)</option>
+                            <option value="10">10 horas (turno extendido)</option>
                         </select>
-                        <div class="info-text">Jornada laboral típica en México: 8 horas</div>
                     </div>
                     
                     <div class="input-group">
                         <label><i class="fas fa-map-marker-alt"></i> Región de México:</label>
                         <select id="region">
-                            <option value="north">Norte (Salarios más altos)</option>
-                            <option value="central" selected>Centro (Ciudad de México, Guadalajara)</option>
-                            <option value="south">Sur (Salarios más bajos)</option>
-                            <option value="border">Frontera (Maquiladoras)</option>
+                            <option value="north">Norte (salarios más altos)</option>
+                            <option value="central" selected>Centro (CDMX, Guadalajara)</option>
+                            <option value="south">Sur (salarios más bajos)</option>
+                            <option value="border">Frontera (maquiladoras)</option>
                         </select>
-                        <div class="info-text">Los salarios varían significativamente por región</div>
+                        <div class="info-text">Los salarios varían por región</div>
                     </div>
                 </div>
             </div>
             
-            <!-- Секция 3: Costos Laborales Mexicanos -->
+            <!-- SECTION 3: COSTS -->
             <div class="section">
-                <div class="section-title"><i class="fas fa-money-bill-wave"></i> 3. Costos Laborales en México 2026</div>
-                
-                <div class="warning-box">
-                    <i class="fas fa-exclamation-triangle"></i> <strong>Importante:</strong> Aumento salarial del 12% en 2026. Los costos laborales están en constante crecimiento.
-                </div>
-                
-                <div class="row">
-                    <div class="input-group">
-                        <label><i class="fas fa-user-tie"></i> Salario Diario del Limpiador (MXN):</label>
-                        <div class="currency-input">
-                            <span>$</span>
-                            <input type="number" id="dailySalary" value="420" min="200" step="10">
-                        </div>
-                        <div class="mexican-data">
-                            <strong>Norte de México 2026:</strong> $420 MXN/día ≈ $7,560 MXN/mes<br>
-                            <strong>Salario mínimo nacional:</strong> $250 MXN/día (≈$4,500 MXN/mes)
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label><i class="fas fa-percentage"></i> Beneficios Obligatorios (% del salario):</label>
-                        <select id="benefitsPercentage">
-                            <option value="0.30">30% (Mínimo legal)</option>
-                            <option value="0.40" selected>40% (Promedio industria)</option>
-                            <option value="0.50">50% (Empresas grandes)</option>
-                        </select>
-                        <div class="info-text">IMSS, INFONAVIT, Aguinaldo, Vacaciones, Prima Vacacional</div>
-                    </div>
+                <div class="section-title">
+                    <i class="fas fa-money-bill-wave"></i> 3. Costos en México 2026
                 </div>
                 
                 <div class="water-electricity-box">
-                    <h4><i class="fas fa-tint"></i> Costos Actuales de Agua y Electricidad en México (2026):</h4>
-                    <p><strong>Agua:</strong> $20-30 MXN por m³ (promedio: $25 MXN/m³)</p>
-                    <p><strong>Electricidad:</strong> $2.5-4.5 MXN por kWh (tarifa comercial promedio: $2.50 MXN/kWh)</p>
-                    <p><strong>Ahorro con máquina:</strong> 80% menos agua, bajo consumo eléctrico</p>
+                    <h4><i class="fas fa-tint"></i> Costos Actuales:</h4>
+                    <p><strong>Agua:</strong> $20-30 MXN/m³ (promedio: $25 MXN/m³)</p>
+                    <p><strong>Electricidad:</strong> $2.5-4.5 MXN/kWh (comercial: $2.50 MXN/kWh)</p>
                 </div>
                 
                 <div class="row">
                     <div class="input-group">
-                        <label><i class="fas fa-tint"></i> Costo de Agua (MXN/m³):</label>
-                        <div class="currency-input">
-                            <span>$</span>
-                            <input type="number" id="waterCost" value="25" min="10" step="1">
+                        <label><i class="fas fa-user-tie"></i> Salario Diario (MXN):</label>
+                        <input type="number" id="dailySalary" value="420" min="200">
+                        <div class="data-box">
+                            <strong>Norte de México 2026:</strong> $420 MXN/día<br>
+                            <strong>Salario mínimo:</strong> $250 MXN/día
                         </div>
-                        <div class="info-text">México: $20-30 MXN por metro cúbico (depende de la ciudad)</div>
                     </div>
                     
                     <div class="input-group">
-                        <label><i class="fas fa-bolt"></i> Costo de Electricidad (MXN/kWh):</label>
-                        <div class="currency-input">
-                            <span>$</span>
-                            <input type="number" id="energyCost" value="2.50" min="1" step="0.1">
-                        </div>
-                        <div class="info-text">Tarifa comercial en México: $2.00-3.00 MXN por kWh</div>
+                        <label><i class="fas fa-percentage"></i> Beneficios (% del salario):</label>
+                        <select id="benefits">
+                            <option value="0.30">30% (mínimo legal)</option>
+                            <option value="0.40" selected>40% (promedio industria)</option>
+                            <option value="0.50">50% (empresas grandes)</option>
+                        </select>
+                        <div class="info-text">IMSS, INFONAVIT, Aguinaldo, Vacaciones</div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="input-group">
+                        <label><i class="fas fa-tint"></i> Costo Agua (MXN/m³):</label>
+                        <input type="number" id="waterCost" value="25" min="10">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label><i class="fas fa-bolt"></i> Costo Electricidad (MXN/kWh):</label>
+                        <input type="number" id="energyCost" value="2.50" min="1" step="0.1">
                     </div>
                 </div>
             </div>
             
-            <!-- Секция 4: Análisis de Sensibilidad -->
-            <div class="section">
-                <div class="section-title"><i class="fas fa-chart-bar"></i> 4. Análisis de Sensibilidad</div>
-                
-                <div class="row">
-                    <div class="input-group">
-                        <label><i class="fas fa-arrow-down"></i> Escenario Pesimista (% aumento salarial):</label>
-                        <select id="pessimisticScenario">
-                            <option value="0.08">8% anual</option>
-                            <option value="0.10" selected>10% anual</option>
-                            <option value="0.12">12% anual (actual)</option>
-                        </select>
-                        <div class="info-text">Tasa de aumento salarial más conservadora</div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label><i class="fas fa-arrow-up"></i> Escenario Optimista (% aumento salarial):</label>
-                        <select id="optimisticScenario">
-                            <option value="0.12">12% anual (actual)</option>
-                            <option value="0.15" selected>15% anual</option>
-                            <option value="0.18">18% anual</option>
-                        </select>
-                        <div class="info-text">Tasa de aumento salarial más agresiva</div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="input-group">
-                        <label><i class="fas fa-chart-pie"></i> Período de Análisis (años):</label>
-                        <select id="analysisPeriod">
-                            <option value="1">1 año</option>
-                            <option value="3" selected>3 años</option>
-                            <option value="5">5 años</option>
-                        </select>
-                        <div class="info-text">Período para calcular el ROI total</div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label><i class="fas fa-percentage"></i> Tasa de Inflación Anual (%):</label>
-                        <input type="number" id="inflationRate" value="4.5" min="0" max="20" step="0.1">
-                        <div class="info-text">Inflación proyectada para México 2026: 4.5%</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Botones de acción -->
+            <!-- BUTTONS -->
             <div class="btn-container">
-                <button class="btn-primary" onclick="calculate()">
+                <button class="btn-primary" onclick="calculateROI()">
                     <i class="fas fa-calculator"></i> Calcular ROI y Ahorros
                 </button>
                 <button class="btn-secondary" onclick="resetCalculator()">
@@ -737,392 +583,199 @@
                 </button>
             </div>
             
-            <!-- Результаты -->
-            <div class="result-section" id="resultSection">
-                <div class="section-title"><i class="fas fa-chart-line"></i> Resultados para el Mercado Mexicano 2026</div>
-                
-                <!-- Display de Monedas -->
-                <div class="currency-display fade-in" id="currencyDisplay">
-                    <div class="currency-item">
-                        <div class="currency-flag">🇲🇽</div>
-                        <div><strong>MXN</strong></div>
-                        <div id="totalSavingsMXN">$0</div>
-                    </div>
-                    <div class="currency-item">
-                        <div class="currency-flag">🇺🇸</div>
-                        <div><strong>USD</strong></div>
-                        <div id="totalSavingsUSD">$0</div>
-                    </div>
-                    <div class="currency-item" id="cnyDisplay" style="display:none;">
-                        <div class="currency-flag">🇨🇳</div>
-                        <div><strong>CNY</strong></div>
-                        <div id="totalSavingsCNY">¥0</div>
-                    </div>
+            <!-- RESULTS SECTION -->
+            <div class="results" id="results">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i> Resultados para México 2026
                 </div>
                 
                 <div class="highlight-box fade-in">
                     <div class="highlight-label">La máquina se paga sola en</div>
-                    <div class="highlight-number" id="roiMonths">0 meses</div>
-                    <div class="highlight-label">reemplazando <span id="workersReplaced">0</span> limpiador(es) manual(es)</div>
+                    <div class="highlight-number" id="roiMonths">0</div>
+                    <div class="highlight-label">meses reemplazando <span id="workersReplaced">0</span> limpiador(es)</div>
                     
                     <div id="roiBadge" class="roi-badge roi-excellent">¡Excelente Inversión!</div>
                 </div>
                 
-                <!-- Análisis de Sensibilidad -->
-                <div class="sensitivity-grid fade-in">
-                    <div class="sensitivity-card sensitivity-pessimistic">
-                        <h4>Escenario Pesimista</h4>
-                        <div class="value" id="pessimisticROI">0 meses</div>
-                        <div class="sub-value" id="pessimisticSavings">$0 MXN/año</div>
-                    </div>
-                    <div class="sensitivity-card sensitivity-realistic">
-                        <h4>Escenario Real</h4>
-                        <div class="value" id="realisticROI">0 meses</div>
-                        <div class="sub-value" id="realisticSavings">$0 MXN/año</div>
-                    </div>
-                    <div class="sensitivity-card sensitivity-optimistic">
-                        <h4>Escenario Optimista</h4>
-                        <div class="value" id="optimisticROI">0 meses</div>
-                        <div class="sub-value" id="optimisticSavings">$0 MXN/año</div>
-                    </div>
-                </div>
-                
-                <!-- Детализированная экономия -->
+                <!-- DETAILED BREAKDOWN -->
                 <div class="cost-breakdown fade-in">
-                    <h4><i class="fas fa-calculator"></i> Cálculo Detallado (Anual):</h4>
+                    <h4><i class="fas fa-calculator"></i> Desglose Anual:</h4>
                     <div class="cost-item">
                         <span class="cost-label">Costo limpieza manual:</span>
                         <span class="cost-value" id="manualCost">$0 MXN</span>
                     </div>
                     <div class="cost-item">
-                        <span class="cost-label">Costo con máquina Aventurier:</span>
+                        <span class="cost-label">Costo con máquina:</span>
                         <span class="cost-value" id="machineCost">$0 MXN</span>
                     </div>
                     <div class="cost-item">
-                        <span class="cost-label">Ahorro en mano de obra:</span>
+                        <span class="cost-label">Ahorro anual mano de obra:</span>
                         <span class="cost-value" id="laborSavings">$0 MXN</span>
                     </div>
-                    <div class="cost-item">
-                        <span class="cost-label">Ahorro en agua (80%):</span>
-                        <span class="cost-value" id="waterSavingsDetail">$0 MXN</span>
-                    </div>
-                    <div class="cost-item">
-                        <span class="cost-label">Costo electricidad máquina:</span>
-                        <span class="cost-value" id="energyCostDetail">$0 MXN</span>
-                    </div>
-                    <div class="cost-item" style="border-top: 2px solid #ce1126; padding-top: 12px;">
+                    <div class="cost-item" style="border-top: 2px solid var(--mexico-red); padding-top: 12px;">
                         <span class="cost-label"><strong>Ahorro total anual:</strong></span>
                         <span class="cost-value"><strong id="totalSavings">$0 MXN</strong></span>
                     </div>
                 </div>
                 
+                <!-- DETAILS GRID -->
                 <div class="details-grid fade-in">
                     <div class="detail-card">
                         <h4><i class="fas fa-users"></i> Ahorro en Mano de Obra</h4>
-                        <div class="value" id="laborSavingsDetail">$0 MXN</div>
-                        <div class="sub-value">por año | 87.5% menos tiempo</div>
+                        <div class="value" id="detailLabor">$0 MXN</div>
+                        <div class="sub">por año | 87.5% menos tiempo</div>
                     </div>
                     
                     <div class="detail-card">
                         <h4><i class="fas fa-tint"></i> Ahorro en Agua</h4>
-                        <div class="value" id="waterSavings">$0 MXN</div>
-                        <div class="sub-value">por año (80% menos consumo)</div>
+                        <div class="value" id="detailWater">$0 MXN</div>
+                        <div class="sub">por año (80% menos consumo)</div>
                     </div>
                     
                     <div class="detail-card">
                         <h4><i class="fas fa-bolt"></i> Costo Electricidad</h4>
-                        <div class="value" id="energyCosts">$0 MXN</div>
-                        <div class="sub-value">por año (bajo consumo)</div>
+                        <div class="value" id="detailEnergy">$0 MXN</div>
+                        <div class="sub">por año (bajo consumo)</div>
                     </div>
                     
                     <div class="detail-card">
                         <h4><i class="fas fa-rocket"></i> Productividad</h4>
                         <div class="value">8x más rápido</div>
-                        <div class="sub-value">vs limpieza manual</div>
+                        <div class="sub">vs limpieza manual</div>
                     </div>
                 </div>
                 
-                <!-- Ключевой показатель -->
-                <div class="labor-cost-box fade-in">
-                    <h4><i class="fas fa-bullseye"></i> Punto Clave para Ventas en México 2026:</h4>
-                    <p><strong>Fórmula Simple:</strong> Precio de la máquina ($2,799 USD ÷ 17.24 = $48,227 MXN) ÷ Salario mensual ($7,560 MXN) = <strong>6.4 meses</strong></p>
-                    <p>Esto significa que la máquina cuesta lo equivalente a <strong>6.4 meses de salario</strong> de un limpiador.</p>
-                    <p>Dado que la máquina es <strong>8 veces más rápida</strong>, se paga sola en menos de 6 meses.</p>
-                </div>
-                
-                <!-- Сравнение -->
+                <!-- COMPARISON -->
                 <div class="cost-breakdown fade-in">
-                    <h4><i class="fas fa-balance-scale"></i> Comparación: Máquina vs Mano de Obra (3 años)</h4>
+                    <h4><i class="fas fa-balance-scale"></i> Comparación 3 Años:</h4>
                     <div class="cost-item">
-                        <span class="cost-label">3 Limpiadores Manuales (3 años):</span>
-                        <span class="cost-value" id="threeYearWorkers">$0 MXN</span>
+                        <span class="cost-label">3 años limpieza manual:</span>
+                        <span class="cost-value" id="threeYearManual">$0 MXN</span>
                     </div>
                     <div class="cost-item">
-                        <span class="cost-label">Máquina Aventurier (3 años):</span>
+                        <span class="cost-label">3 años con máquina:</span>
                         <span class="cost-value" id="threeYearMachine">$0 MXN</span>
                     </div>
                     <div class="cost-item">
-                        <span class="cost-label">Ahorro Total 3 Años:</span>
+                        <span class="cost-label">Ahorro total 3 años:</span>
                         <span class="cost-value" id="threeYearSavings">$0 MXN</span>
                     </div>
-                    <div class="cost-item">
-                        <span class="cost-label">ROI Total (3 años):</span>
-                        <span class="cost-value" id="threeYearROI">0%</span>
-                    </div>
                 </div>
                 
-                <!-- Proyección a 5 años -->
-                <div class="cost-breakdown fade-in">
-                    <h4><i class="fas fa-chart-line"></i> Proyección a 5 Años (Considerando inflación 4.5% anual)</h4>
-                    <div class="cost-item">
-                        <span class="cost-label">Costo acumulado mano de obra:</span>
-                        <span class="cost-value" id="fiveYearLabor">$0 MXN</span>
-                    </div>
-                    <div class="cost-item">
-                        <span class="cost-label">Costo acumulado máquina:</span>
-                        <span class="cost-value" id="fiveYearMachine">$0 MXN</span>
-                    </div>
-                    <div class="cost-item" style="border-top: 2px solid #006847;">
-                        <span class="cost-label"><strong>Ahorro acumulado 5 años:</strong></span>
-                        <span class="cost-value"><strong id="fiveYearSavings">$0 MXN</strong></span>
-                    </div>
-                </div>
-                
-                <!-- Бенефиции -->
-                <div class="fade-in" style="margin-top: 30px;">
-                    <h4 style="color: #006847; margin-bottom: 15px;"><i class="fas fa-check-circle"></i> Beneficios Adicionales para Empresas Mexicanas:</h4>
-                    <ul class="benefits-list">
-                        <li><strong>Reducción de rotación de personal:</strong> Los trabajadores prefieren usar máquinas modernas</li>
-                        <li><strong>Cumplimiento normativo:</strong> Mejor control de humedad, menos accidentes</li>
-                        <li><strong>Imagen corporativa:</strong> Empresa moderna que invierte en tecnología</li>
-                        <li><strong>Escalabilidad:</strong> Un operador puede limpiar múltiples ubicaciones</li>
-                        <li><strong>Independencia de aumentos salariales:</strong> Menos sensible a los incrementos del 12% anual</li>
-                        <li><strong>Mejor calidad de limpieza:</strong> Resultados consistentes y profesionales</li>
-                    </ul>
-                </div>
-                
-                <!-- Export buttons -->
-                <div class="export-buttons fade-in">
-                    <button class="btn-primary" onclick="exportToPDF()">
-                        <i class="fas fa-file-pdf"></i> Exportar a PDF
-                    </button>
-                    <button class="btn-secondary" onclick="copyResultsToClipboard()">
-                        <i class="fas fa-copy"></i> Copiar Resultados
-                    </button>
-                    <button class="btn-secondary" onclick="printResults()">
-                        <i class="fas fa-print"></i> Imprimir
-                    </button>
-                </div>
-                
-                <!-- Дисклеймер -->
-                <div class="warning-box fade-in" style="margin-top: 30px;">
-                    <h4><i class="fas fa-info-circle"></i> Notas Importantes para México 2026:</h4>
-                    <p>1. <strong>Crédito fiscal:</strong> La inversión en maquinaria puede ser deducible de impuestos (ISR)</p>
-                    <p>2. <strong>Depreciación acelerada:</strong> En algunos casos se puede depreciar en 1-3 años</p>
-                    <p>3. <strong>Programas de apoyo:</strong> Revisar programas del gobierno para modernización de PyMEs</p>
-                    <p>4. <strong>Financiamiento:</strong> Opciones de crédito disponibles para facilitar la compra</p>
-                    <p>5. <strong>Garantía:</strong> Máquinas Aventurier incluyen garantía de 2 años</p>
+                <!-- KEY POINT -->
+                <div class="info-box fade-in">
+                    <h4><i class="fas fa-bullseye"></i> Punto Clave para Ventas:</h4>
+                    <p><strong>Fórmula Simple:</strong> Precio máquina ($48,227 MXN) ÷ Salario mensual ($7,560 MXN) = <strong>6.4 meses</strong></p>
+                    <p>La máquina cuesta equivalente a <strong>6.4 meses de salario</strong> de un limpiador.</p>
+                    <p>Como es <strong>8 veces más rápida</strong>, se paga sola en menos de 6 meses.</p>
                 </div>
             </div>
         </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>AVENTURIER México 2026</strong> | Calculadora de Retorno de Inversión</p>
+            <p>Datos actualizados al 29 de Enero 2026 | 
+            <a href="https://aventurier.com.mx">aventurier.com.mx</a></p>
+            <p style="font-size: 14px; margin-top: 10px; opacity: 0.8;">
+                Esta calculadora es una herramienta estimativa. Consulte con un asesor financiero.
+            </p>
+        </div>
     </div>
-
+    
+    <!-- JAVASCRIPT -->
     <script>
-        // DATOS DEL MERCADO MEXICANO 2026 - ACTUALIZADOS
-        const MEXICO_MARKET_DATA = {
-            // Salarios por región (diarios en MXN)
-            dailySalaries: {
-                north: 420,      // Norte: $420 MXN/día
-                central: 350,    // Centro: $350 MXN/día
-                south: 280,      // Sur: $280 MXN/día
-                border: 400      // Frontera: $400 MXN/día
+        // MARKET DATA 2026
+        const MEXICO_DATA = {
+            salaries: {
+                north: 420,
+                central: 350,
+                south: 280,
+                border: 400
             },
-            
-            // Precios de las máquinas en USD
-            machinePricesUSD: {
-                youth1: 2399,    // Youth 1 Batería
-                youth2: 2799     // Youth 2 Baterías
+            machinePrices: {
+                youth1: 2399,
+                youth2: 2799
             },
-            
-            // Eficiencia comprobada
             efficiency: {
-                manual: 200,     // m²/hora manual
-                machine: 1600,   // m²/hora con máquina (8x más rápido)
-                timeReduction: 0.875 // 87.5% reducción de tiempo
-            },
-            
-            // Parámetros operativos
-            operational: {
-                workingDaysPerMonth: 26,    // 6 días/semana × 4.33 semanas
-                hoursPerDay: 8,
-                waterSavings: 0.80,         // 80% menos agua
-                energyConsumption: 0.4       // kW/hora
-            },
-            
-            // Tipos de cambio
-            exchangeRates: {
-                usdToMxn: 17.24,   // 1 USD = 17.24 MXN
-                usdToCny: 6.95     // 1 USD = 6.95 CNY
-            },
-            
-            // Proyecciones económicas
-            projections: {
-                salaryIncrease2026: 0.12,   // 12% aumento salarial
-                inflation2026: 0.045,       // 4.5% inflación
-                waterCostRange: { min: 20, max: 30 },   // MXN/m³
-                energyCostRange: { min: 2.5, max: 4.5 } // MXN/kWh
+                manual: 200,    // m²/hour manual
+                machine: 1600   // m²/hour machine (8x faster)
             }
         };
-
-        // Функция обновления цены
-        function updateModelPrice() {
-            const modelId = document.getElementById('modelSelect').value;
-            const exchangeRate = parseFloat(document.getElementById('exchangeRate').value);
-            
-            // Precio en USD
-            const priceUSD = MEXICO_MARKET_DATA.machinePricesUSD[modelId];
-            document.getElementById('machinePriceUSD').value = priceUSD;
-            
-            // Precio en MXN
-            const priceMXN = Math.round(priceUSD * exchangeRate);
-            document.getElementById('machinePriceMXN').value = priceMXN;
-            
-            // Actualizar info
-            const batteryText = modelId === 'youth1' ? '1 batería' : '2 baterías';
-            document.getElementById('modelInfo').textContent = 
-                `Modelo con ${batteryText} - ${modelId === 'youth1' ? 'Para uso moderado' : 'Ideal para turnos largos'}`;
-            
-            // Actualizar salario según región
-            updateSalaryByRegion();
-        }
-
-        // Функция обновления salario por región
-        function updateSalaryByRegion() {
-            const region = document.getElementById('region').value;
-            const dailySalary = MEXICO_MARKET_DATA.dailySalaries[region];
-            document.getElementById('dailySalary').value = dailySalary;
-        }
-
-        // Функция para actualizar el display de monedas
-        function updateCurrencyDisplay() {
-            const showCNY = document.getElementById('secondaryCurrency').value === 'cny';
-            const cnyDisplay = document.getElementById('cnyDisplay');
-            cnyDisplay.style.display = showCNY ? 'block' : 'none';
-        }
-
-        // Функция principal de cálculo
-        function calculate() {
+        
+        // UPDATE SALARY BASED ON REGION
+        document.getElementById('region').addEventListener('change', function() {
+            const region = this.value;
+            const salary = MEXICO_DATA.salaries[region];
+            document.getElementById('dailySalary').value = salary;
+        });
+        
+        // MAIN CALCULATION FUNCTION
+        function calculateROI() {
             try {
-                // 1. Obtener datos del formulario
-                const modelId = document.getElementById('modelSelect').value;
-                const priceUSD = parseFloat(document.getElementById('machinePriceUSD').value);
+                // GET INPUT VALUES
+                const model = document.getElementById('model').value;
                 const exchangeRate = parseFloat(document.getElementById('exchangeRate').value);
-                const priceMXN = priceUSD * exchangeRate;
-                
                 const area = parseFloat(document.getElementById('area').value);
-                const cleaningDays = parseInt(document.getElementById('cleaningDays').value);
-                const dailyHours = parseInt(document.getElementById('dailyHours').value);
-                
+                const daysPerWeek = parseInt(document.getElementById('daysPerWeek').value);
+                const hoursPerDay = parseInt(document.getElementById('hoursPerDay').value);
                 const dailySalary = parseFloat(document.getElementById('dailySalary').value);
-                const benefitsPercentage = parseFloat(document.getElementById('benefitsPercentage').value);
+                const benefits = parseFloat(document.getElementById('benefits').value);
                 const waterCost = parseFloat(document.getElementById('waterCost').value);
                 const energyCost = parseFloat(document.getElementById('energyCost').value);
                 
-                const pricePerM2 = parseFloat(document.getElementById('pricePerM2').value);
-                const analysisPeriod = parseInt(document.getElementById('analysisPeriod').value);
-                const inflationRate = parseFloat(document.getElementById('inflationRate').value) / 100;
+                // MACHINE PRICE
+                const priceUSD = MEXICO_DATA.machinePrices[model];
+                const priceMXN = priceUSD * exchangeRate;
                 
-                // 2. CÁLCULO COSTOS MANUALES
-                
-                // Horas necesarias manualmente
-                const manualHoursPerDay = area / MEXICO_MARKET_DATA.efficiency.manual;
-                const manualDaysPerMonth = cleaningDays * 4.33; // 4.33 semanas/mes
+                // MANUAL CLEANING CALCULATION
+                const manualHoursPerDay = area / MEXICO_DATA.efficiency.manual;
+                const manualDaysPerMonth = daysPerWeek * 4.33;
                 const manualMonthlyHours = manualHoursPerDay * manualDaysPerMonth;
                 
-                // Costo mano de obra manual
-                const hourlySalary = dailySalary / 8; // 8 horas/día
-                const totalHourlyCost = hourlySalary * (1 + benefitsPercentage);
-                const monthlyLaborCostManual = manualMonthlyHours * totalHourlyCost;
-                const yearlyLaborCostManual = monthlyLaborCostManual * 12;
+                const hourlySalary = dailySalary / 8;
+                const totalHourlyCost = hourlySalary * (1 + benefits);
+                const monthlyLaborManual = manualMonthlyHours * totalHourlyCost;
+                const yearlyLaborManual = monthlyLaborManual * 12;
                 
-                // Costo agua manual (estimado 2L/m²)
-                const manualWaterPerMonth = area * manualDaysPerMonth * 2 / 1000; // m³
-                const monthlyWaterCostManual = manualWaterPerMonth * waterCost;
-                const yearlyWaterCostManual = monthlyWaterCostManual * 12;
+                // MANUAL WATER COST (2L/m²)
+                const manualWaterMonthly = area * manualDaysPerMonth * 2 / 1000;
+                const yearlyWaterManual = manualWaterMonthly * waterCost * 12;
                 
-                // Costo total manual anual
-                const yearlyCostManual = yearlyLaborCostManual + yearlyWaterCostManual;
+                const yearlyCostManual = yearlyLaborManual + yearlyWaterManual;
                 
-                // 3. CÁLCULO COSTOS CON MÁQUINA
-                
-                // Horas necesarias con máquina (8x más rápido)
-                const machineHoursPerDay = area / MEXICO_MARKET_DATA.efficiency.machine;
+                // MACHINE CLEANING CALCULATION
+                const machineHoursPerDay = area / MEXICO_DATA.efficiency.machine;
                 const machineMonthlyHours = machineHoursPerDay * manualDaysPerMonth;
                 
-                // Costo mano de obra con máquina (87.5% menos tiempo)
-                const monthlyLaborCostMachine = machineMonthlyHours * totalHourlyCost;
-                const yearlyLaborCostMachine = monthlyLaborCostMachine * 12;
+                const monthlyLaborMachine = machineMonthlyHours * totalHourlyCost;
+                const yearlyLaborMachine = monthlyLaborMachine * 12;
                 
-                // Costo agua con máquina (80% menos)
-                const machineWaterPerMonth = manualWaterPerMonth * (1 - MEXICO_MARKET_DATA.operational.waterSavings);
-                const monthlyWaterCostMachine = machineWaterPerMonth * waterCost;
-                const yearlyWaterCostMachine = monthlyWaterCostMachine * 12;
+                // MACHINE WATER (80% less)
+                const machineWaterMonthly = manualWaterMonthly * 0.2;
+                const yearlyWaterMachine = machineWaterMonthly * waterCost * 12;
                 
-                // Costo electricidad
-                const monthlyEnergyCost = machineMonthlyHours * MEXICO_MARKET_DATA.operational.energyConsumption * energyCost;
-                const yearlyEnergyCost = monthlyEnergyCost * 12;
+                // ENERGY COST (0.4 kWh/hour)
+                const yearlyEnergyCost = machineMonthlyHours * 0.4 * energyCost * 12;
                 
-                // Costo total máquina anual
-                const yearlyCostMachine = yearlyLaborCostMachine + yearlyWaterCostMachine + yearlyEnergyCost;
+                const yearlyCostMachine = yearlyLaborMachine + yearlyWaterMachine + yearlyEnergyCost;
                 
-                // 4. CÁLCULO AHORROS Y ROI
-                
+                // SAVINGS AND ROI
                 const yearlySavings = yearlyCostManual - yearlyCostMachine;
                 const monthlySavings = yearlySavings / 12;
+                const roiMonths = priceMXN / monthlySavings;
                 
-                // ROI en meses
-                let roiMonths = priceMXN / monthlySavings;
-                if (roiMonths < 0 || !isFinite(roiMonths)) roiMonths = 999;
+                // WORKERS REPLACED
+                const workersReplaced = Math.ceil(manualMonthlyHours / (hoursPerDay * manualDaysPerMonth));
                 
-                // Trabajadores reemplazados
-                const workersReplaced = Math.ceil(manualMonthlyHours / (dailyHours * manualDaysPerMonth));
+                // SHOW RESULTS
+                document.getElementById('results').style.display = 'block';
                 
-                // 5. CÁLCULO DE PROYECCIONES A LARGO PLAZO
-                const projectionYears = analysisPeriod;
-                let totalLaborCost = 0;
-                let totalMachineCost = priceMXN; // Incluye inversión inicial
-                
-                for (let year = 1; year <= projectionYears; year++) {
-                    // Ajustar por inflación y aumento salarial
-                    const inflationFactor = Math.pow(1 + inflationRate, year - 1);
-                    const laborCostYear = yearlyCostManual * inflationFactor;
-                    const machineCostYear = yearlyCostMachine * inflationFactor;
-                    
-                    totalLaborCost += laborCostYear;
-                    totalMachineCost += machineCostYear;
-                }
-                
-                const totalSavingsProjection = totalLaborCost - totalMachineCost;
-                const totalROI = (totalSavingsProjection / priceMXN) * 100;
-                
-                // 6. ANÁLISIS DE SENSIBILIDAD
-                const pessimisticFactor = parseFloat(document.getElementById('pessimisticScenario').value);
-                const optimisticFactor = parseFloat(document.getElementById('optimisticScenario').value);
-                
-                const pessimisticSavings = yearlySavings * (pessimisticFactor / MEXICO_MARKET_DATA.projections.salaryIncrease2026);
-                const optimisticSavings = yearlySavings * (optimisticFactor / MEXICO_MARKET_DATA.projections.salaryIncrease2026);
-                
-                const pessimisticROI = priceMXN / (pessimisticSavings / 12);
-                const optimisticROI = priceMXN / (optimisticSavings / 12);
-                
-                // 7. MOSTRAR RESULTADOS
-                document.getElementById('resultSection').style.display = 'block';
-                
-                // ROI principal
+                // ROI
                 document.getElementById('roiMonths').textContent = roiMonths.toFixed(1);
                 document.getElementById('workersReplaced').textContent = workersReplaced;
                 
-                // Badge según ROI
+                // ROI BADGE
                 const roiBadge = document.getElementById('roiBadge');
                 if (roiMonths < 6) {
                     roiBadge.className = 'roi-badge roi-excellent';
@@ -1130,170 +783,62 @@
                 } else if (roiMonths < 12) {
                     roiBadge.className = 'roi-badge roi-good';
                     roiBadge.textContent = 'Buena Inversión. Se paga en menos de 1 año';
-                } else if (roiMonths < 24) {
-                    roiBadge.className = 'roi-badge roi-normal';
-                    roiBadge.textContent = 'Inversión Standard. ROI en 1-2 años';
                 } else {
-                    roiBadge.className = 'roi-badge roi-long';
+                    roiBadge.className = 'roi-badge';
                     roiBadge.textContent = 'Inversión a Largo Plazo';
                 }
                 
-                // Display de monedas
-                document.getElementById('totalSavingsMXN').textContent = formatCurrency(yearlySavings, 'MXN');
-                document.getElementById('totalSavingsUSD').textContent = formatCurrency(yearlySavings / exchangeRate, 'USD');
-                
-                if (document.getElementById('secondaryCurrency').value === 'cny') {
-                    const cnyRate = MEXICO_MARKET_DATA.exchangeRates.usdToCny;
-                    const savingsCNY = (yearlySavings / exchangeRate) * cnyRate;
-                    document.getElementById('totalSavingsCNY').textContent = formatCurrency(savingsCNY, 'CNY');
+                // FORMAT CURRENCY
+                function formatCurrency(amount) {
+                    return new Intl.NumberFormat('es-MX', {
+                        style: 'currency',
+                        currency: 'MXN',
+                        minimumFractionDigits: 0
+                    }).format(Math.round(amount));
                 }
                 
-                // Análisis de sensibilidad
-                document.getElementById('pessimisticROI').textContent = pessimisticROI.toFixed(1) + ' meses';
-                document.getElementById('pessimisticSavings').textContent = formatCurrency(pessimisticSavings, 'MXN') + '/año';
+                // UPDATE DISPLAY
+                document.getElementById('manualCost').textContent = formatCurrency(yearlyCostManual);
+                document.getElementById('machineCost').textContent = formatCurrency(yearlyCostMachine);
+                document.getElementById('laborSavings').textContent = formatCurrency(yearlyLaborManual - yearlyLaborMachine);
+                document.getElementById('totalSavings').textContent = formatCurrency(yearlySavings);
                 
-                document.getElementById('realisticROI').textContent = roiMonths.toFixed(1) + ' meses';
-                document.getElementById('realisticSavings').textContent = formatCurrency(yearlySavings, 'MXN') + '/año';
+                document.getElementById('detailLabor').textContent = formatCurrency(yearlyLaborManual - yearlyLaborMachine);
+                document.getElementById('detailWater').textContent = formatCurrency(yearlyWaterManual - yearlyWaterMachine);
+                document.getElementById('detailEnergy').textContent = formatCurrency(yearlyEnergyCost);
                 
-                document.getElementById('optimisticROI').textContent = optimisticROI.toFixed(1) + ' meses';
-                document.getElementById('optimisticSavings').textContent = formatCurrency(optimisticSavings, 'MXN') + '/año';
+                // 3 YEAR COMPARISON
+                document.getElementById('threeYearManual').textContent = formatCurrency(yearlyCostManual * 3);
+                document.getElementById('threeYearMachine').textContent = formatCurrency(priceMXN + (yearlyCostMachine * 3));
+                document.getElementById('threeYearSavings').textContent = formatCurrency((yearlyCostManual * 3) - (priceMXN + yearlyCostMachine * 3));
                 
-                // Detalles de costos
-                document.getElementById('manualCost').textContent = formatCurrency(yearlyCostManual, 'MXN');
-                document.getElementById('machineCost').textContent = formatCurrency(yearlyCostMachine, 'MXN');
-                document.getElementById('laborSavings').textContent = formatCurrency(yearlyLaborCostManual - yearlyLaborCostMachine, 'MXN');
-                document.getElementById('waterSavingsDetail').textContent = formatCurrency(yearlyWaterCostManual - yearlyWaterCostMachine, 'MXN');
-                document.getElementById('energyCostDetail').textContent = formatCurrency(yearlyEnergyCost, 'MXN');
-                document.getElementById('totalSavings').textContent = formatCurrency(yearlySavings, 'MXN');
-                
-                // Grid details
-                document.getElementById('laborSavingsDetail').textContent = formatCurrency(yearlyLaborCostManual - yearlyLaborCostMachine, 'MXN');
-                document.getElementById('waterSavings').textContent = formatCurrency(yearlyWaterCostManual - yearlyWaterCostMachine, 'MXN');
-                document.getElementById('energyCosts').textContent = formatCurrency(yearlyEnergyCost, 'MXN');
-                
-                // Comparación 3 años
-                const monthlySalary = dailySalary * MEXICO_MARKET_DATA.operational.workingDaysPerMonth;
-                const yearlyWorkerCost = monthlySalary * 12 * (1 + benefitsPercentage);
-                
-                document.getElementById('threeYearWorkers').textContent = formatCurrency(yearlyWorkerCost * 3, 'MXN');
-                document.getElementById('threeYearMachine').textContent = formatCurrency(priceMXN + (yearlyCostMachine * 3), 'MXN');
-                document.getElementById('threeYearSavings').textContent = formatCurrency((yearlyWorkerCost * 3) - (priceMXN + yearlyCostMachine * 3), 'MXN');
-                document.getElementById('threeYearROI').textContent = totalROI.toFixed(1) + '%';
-                
-                // Proyección 5 años
-                let fiveYearLabor = 0;
-                let fiveYearMachine = priceMXN;
-                
-                for (let year = 1; year <= 5; year++) {
-                    const inflationFactor = Math.pow(1 + inflationRate, year - 1);
-                    fiveYearLabor += yearlyCostManual * inflationFactor;
-                    fiveYearMachine += yearlyCostMachine * inflationFactor;
-                }
-                
-                document.getElementById('fiveYearLabor').textContent = formatCurrency(fiveYearLabor, 'MXN');
-                document.getElementById('fiveYearMachine').textContent = formatCurrency(fiveYearMachine, 'MXN');
-                document.getElementById('fiveYearSavings').textContent = formatCurrency(fiveYearLabor - fiveYearMachine, 'MXN');
-                
-                // Scroll suave a resultados
-                document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
-                
-                return true;
+                // SMOOTH SCROLL TO RESULTS
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
                 
             } catch (error) {
-                console.error("Error en cálculo:", error);
-                alert("Ocurrió un error en el cálculo. Por favor verifique los datos ingresados.");
-                return false;
+                console.error('Calculation error:', error);
+                alert('Por favor, verifique los datos ingresados.');
             }
         }
         
-        // Función para formatear moneda
-        function formatCurrency(number, currency) {
-            const formats = {
-                'MXN': { locale: 'es-MX', symbol: '$' },
-                'USD': { locale: 'en-US', symbol: '$' },
-                'CNY': { locale: 'zh-CN', symbol: '¥' }
-            };
-            
-            const format = formats[currency] || formats['MXN'];
-            
-            return new Intl.NumberFormat(format.locale, {
-                style: 'currency',
-                currency: currency,
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            }).format(Math.round(number));
-        }
-        
-        // Función para reiniciar la calculadora
+        // RESET FUNCTION
         function resetCalculator() {
-            document.getElementById('exchangeRate').value = "17.24";
-            document.getElementById('modelSelect').value = "youth2";
-            document.getElementById('area').value = "2000";
-            document.getElementById('cleaningDays').value = "6";
-            document.getElementById('dailyHours').value = "8";
-            document.getElementById('region').value = "central";
-            document.getElementById('dailySalary').value = "420";
-            document.getElementById('benefitsPercentage').value = "0.40";
-            document.getElementById('waterCost').value = "25";
-            document.getElementById('energyCost').value = "2.50";
-            document.getElementById('pricePerM2').value = "0.50";
-            document.getElementById('analysisPeriod').value = "3";
-            document.getElementById('inflationRate').value = "4.5";
-            
-            updateModelPrice();
-            updateCurrencyDisplay();
-            
-            // Ocultar resultados
-            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('model').value = 'youth2';
+            document.getElementById('exchangeRate').value = '17.24';
+            document.getElementById('area').value = '2000';
+            document.getElementById('daysPerWeek').value = '6';
+            document.getElementById('hoursPerDay').value = '8';
+            document.getElementById('region').value = 'central';
+            document.getElementById('dailySalary').value = '420';
+            document.getElementById('benefits').value = '0.40';
+            document.getElementById('waterCost').value = '25';
+            document.getElementById('energyCost').value = '2.50';
+            document.getElementById('results').style.display = 'none';
         }
         
-        // Función para exportar a PDF (simulada)
-        function exportToPDF() {
-            alert("Funcionalidad de exportación a PDF se implementará próximamente.\nPor ahora, puede imprimir la página usando Ctrl+P.");
-        }
-        
-        // Función para copiar resultados al portapapeles
-        function copyResultsToClipboard() {
-            const results = `
-Resultados Calculadora ROI AVENTURIER - México 2026
-
-ROI: ${document.getElementById('roiMonths').textContent}
-Ahorro Anual: ${document.getElementById('totalSavings').textContent}
-Trabajadores Reemplazados: ${document.getElementById('workersReplaced').textContent}
-
-Escenario Pesimista: ${document.getElementById('pessimisticROI').textContent}
-Escenario Real: ${document.getElementById('realisticROI').textContent}
-Escenario Optimista: ${document.getElementById('optimisticROI').textContent}
-
-Calculado el: ${new Date().toLocaleDateString('es-MX')}
-            `;
-            
-            navigator.clipboard.writeText(results).then(() => {
-                alert("Resultados copiados al portapapeles");
-            });
-        }
-        
-        // Función para imprimir resultados
-        function printResults() {
-            window.print();
-        }
-        
-        // Inicialización
+        // INITIAL CALCULATION ON LOAD
         window.onload = function() {
-            // Configurar eventos
-            document.getElementById('exchangeRate').addEventListener('change', updateModelPrice);
-            document.getElementById('modelSelect').addEventListener('change', updateModelPrice);
-            document.getElementById('region').addEventListener('change', updateSalaryByRegion);
-            document.getElementById('secondaryCurrency').addEventListener('change', updateCurrencyDisplay);
-            
-            // Inicializar valores
-            updateModelPrice();
-            updateCurrencyDisplay();
-            
-            // Calcular automáticamente al cargar
-            setTimeout(() => {
-                calculate();
-            }, 500);
+            setTimeout(calculateROI, 500);
         };
     </script>
 </body>
